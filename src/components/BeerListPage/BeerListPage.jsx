@@ -20,8 +20,6 @@ function BeerListPage() {
                 <option value="Surly">Surly</option>
                 <option value="Indeed">Indeed</option>
             </select>
-
-           
             
             <button onClick={handleSelect}>Add Brewery</button>
 
