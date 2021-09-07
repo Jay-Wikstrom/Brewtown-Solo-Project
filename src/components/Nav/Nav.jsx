@@ -28,6 +28,14 @@ function Nav() {
               Profile
             </Link>
 
+            <Link className="navLink" to="/ratings">
+              Ratings
+            </Link>
+
+            <Link className="navLink" to="/beer-list">
+              Beer List
+            </Link>
+
             <Link className="navLink" to="/info">
               Info Page
             </Link>

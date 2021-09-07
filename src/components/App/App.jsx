@@ -21,7 +21,9 @@ import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 
 import './App.css';
-import ProfilePage from '../ProfilePage/ProfilePage';
+import RatingsPage from '../RatingsTable/RatingsTable';
+import BeerListPage from '../BeerListPage/BeerListPage';
+import BeerRatingPage from '../BeerRatingPage/BeerRatingPage';
 
 function App() {
   const dispatch = useDispatch();
@@ -59,6 +61,30 @@ function App() {
             path="/user"
           >
             <UserPage />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shows RatingsPage else shows LoginPage
+            exact
+            path="/ratings"
+          >
+            <RatingsPage />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shows BeerListPage else shows LoginPage
+            exact
+            path="/beer-list"
+          >
+            <BeerListPage />
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // logged in shows BeerListPage else shows LoginPage
+            exact
+            path="/beer-rating"
+          >
+            <BeerRatingPage />
           </ProtectedRoute>
 
           <ProtectedRoute
