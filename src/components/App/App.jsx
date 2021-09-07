@@ -21,6 +21,7 @@ import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 
 import './App.css';
+import ProfilePage from '../ProfilePage/ProfilePage';
 
 function App() {
   const dispatch = useDispatch();
