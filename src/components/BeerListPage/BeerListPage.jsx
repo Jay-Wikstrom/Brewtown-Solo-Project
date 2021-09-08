@@ -9,37 +9,66 @@ function BeerListPage() {
     useEffect(() => {
         if ('geolocation' in navigator) {
             console.log('geolocation available')
-            navigator.geolocation.getCurrentPosition(async position => {
+            navigator.geolocation.getCurrentPosition(position => {
 
                 const lat = position.coords.latitude;
-                const lon = position.coords.longitude
+                const lon = position.coords.longitude;
 
-                const data = { lat, lon }
-                const options = {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(data)
-                };
-                const response = await fetch('/beer-list', options);
-                const geolocation = await response.json();
+                let latitude = String(lat);
+                console.log(latitude)
+                let longitude = String(lon);
+                console.log(longitude);
+
+                axios({
+                    method: 'GET',
+                    url: 'https://api.openbrewerydb.org/breweries',
+                    params: {
+                        by_dist: `${latitude},${longitude}` //Minneapolis hard code
+                    }
+
+                }).then(response => {
+                    console.log('axios response', response.data);
+                })
                 
-                console.log(geolocation);
+                
+                // const data = { lat, lon }
+                // console.log(data)
+                
+                
+                // lat.toString();
+                // console.log(lat)
+                // const latitude = toString(lat);
+                // console.log(latitude);
+                // console.log(typeof lon)
+                
+
+                // const data = { lat, lon }
+                // console.log(data)
+                // const options = {
+                //     method: 'POST',
+                //     headers: {
+                //         'Content-Type': 'application/json'
+                //     },
+                //     body: JSON.stringify(data)
+                // };
+                // const response = await fetch('/beer-list', options);
+                // const geolocation = await response.json();
+                
+                // console.log(geolocation);
             })
         } else {
             console.log('geolocation not available')
         }
-        axios({
-            method: 'GET',
-            url: 'https://api.openbrewerydb.org/breweries',
-            params: {
-                by_dist: '44.986656,-93.258133' //Minneapolis hard code
-            }
+        // axios({
+        //     method: 'GET',
+        //     url: 'https://api.openbrewerydb.org/breweries',
+        //     params: {
+        //         by_dist: `${latitude},${longitude}` //Minneapolis hard code
+        //     }
 
-        }).then(response => {
-            console.log('axios response', response.data);
-        })
+        // }).then(response => {
+        //     console.log('axios response', response.data);
+        // })
     }, [])
 
 
