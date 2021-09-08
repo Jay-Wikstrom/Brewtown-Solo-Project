@@ -29,6 +29,7 @@ app.use(passport.session());
 /* Routes */
 app.use('/api/user', userRouter);
 //app.use('/api/rating', ratingRouter);
+
 app.post('/beer-list', (request, response) => {
   console.log(request.body)
   const data = request.body;
@@ -36,30 +37,30 @@ app.post('/beer-list', (request, response) => {
     latitude: data.lat,
     longitude: data.lon
   })
-
-    let sqlQuery = `
-      INSERT INTO
-          "location" ("lat", "lon" )
-      VALUES
-          ($1, $2);
-      `;
-    console.log('sqlQuery', sqlQuery);
-    let sqlParams = [
-      data.lat,
-      data.lon
-    ]
-    console.log('sqlParams', sqlParams);
-
-    pool.query(sqlQuery, sqlParams)
-      .then((dbRes) => {
-        console.log(dbRes.rows)
-        response.sendStatus(201);
-      })
-      .catch((error) => {
-        console.log('Error in DB post', error)
-        response.sendStatus(500);
-  })
 })
+//     let sqlQuery = `
+//       INSERT INTO
+//           "location" ("lat", "lon" )
+//       VALUES
+//           ($1, $2);
+//       `;
+//     console.log('sqlQuery', sqlQuery);
+//     let sqlParams = [
+//       data.lat,
+//       data.lon
+//     ]
+//     console.log('sqlParams', sqlParams);
+
+//     pool.query(sqlQuery, sqlParams)
+//       .then((dbRes) => {
+//         console.log(dbRes.rows)
+//         response.sendStatus(201);
+//       })
+//       .catch((error) => {
+//         console.log('Error in DB post', error)
+//         response.sendStatus(500);
+//   })
+// })
 
 
 // Serve static files

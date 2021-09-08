@@ -7,6 +7,29 @@ function BeerListPage() {
     const history = useHistory();
 
     useEffect(() => {
+        if ('geolocation' in navigator) {
+            console.log('geolocation available')
+            navigator.geolocation.getCurrentPosition(async position => {
+
+                const lat = position.coords.latitude;
+                const lon = position.coords.longitude
+
+                const data = { lat, lon }
+                const options = {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                };
+                const response = await fetch('/beer-list', options);
+                const geolocation = await response.json();
+                
+                console.log(geolocation);
+            })
+        } else {
+            console.log('geolocation not available')
+        }
         axios({
             method: 'GET',
             url: 'https://api.openbrewerydb.org/breweries',
@@ -20,28 +43,7 @@ function BeerListPage() {
     }, [])
 
 
-    if ('geolocation' in navigator) {
-        console.log('geolocation available')
-        navigator.geolocation.getCurrentPosition(async position => {
-
-            const lat = position.coords.latitude;
-            const lon = position.coords.longitude
-
-            const data = { lat, lon }
-            const options = {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(data)
-            };
-            const response = await fetch('/beer-list', options);
-            const json = await response.json();
-            console.log(json);
-        })
-    } else {
-        console.log('geolocation not available')
-    }
+    
 
 
 
