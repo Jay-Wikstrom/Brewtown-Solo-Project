@@ -2,9 +2,11 @@ import { useHistory } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { TextField, Container, Select, Button, Grid, InputLabel, FormControl, makeStyles } from '@material-ui/core';
+import { useDispatch } from 'react-redux';
 
-function BeerListPage() {
+function BeerListPage({prop}) {
     const history = useHistory();
+    const dispatch = useDispatch();
 
     const [brewery, setBrewery] = useState([]);
     const [selectBrewery, setSelectBrewery] = useState('');
@@ -50,10 +52,17 @@ function BeerListPage() {
     const handleSelect = () => {
         console.log('Handle Submit');
         console.log(selectBrewery)
-        // history.push({
-        //     pathname: '/beer-rating',
-        //     state: { detail: selectBrewery }
-        // });
+       
+        let selectedBrewery = String(selectBrewery)
+        dispatch({
+            type: 'SELECT_BREWERY',
+            payload: { brewery: selectedBrewery}
+        })
+        //history.push({
+            //pathname: '/beer-rating', 
+        //history.push('/beer-rating', { state: selectBrewery });
+            
+        //});
         //history.push('/beer-rating');
     }
 
