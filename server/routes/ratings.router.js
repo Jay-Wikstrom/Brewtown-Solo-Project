@@ -7,6 +7,26 @@ const router = express.Router();
  */
 router.get('/', (req, res) => {
     // GET route code here
+    const sqlQuery = `
+        SELECT "brewery".brewery_name,
+		"ratings".beer,
+		"ratings".type,
+		"ratings".notes,
+		"ratings".date
+        FROM "ratings"
+        JOIN "user"
+            ON "ratings".user_id = "user".id
+        JOIN "brewery"
+            ON "ratings".brewery_id = "brewery".id;
+    `;
+    pool.query(sqlQuery)
+        .then(result => {
+            res.send(result.rows);
+        })
+        .catch(err => {
+            console.log('ERROR: Get', err);
+            res.sendStatus(500)
+        })
 });
 
 /**

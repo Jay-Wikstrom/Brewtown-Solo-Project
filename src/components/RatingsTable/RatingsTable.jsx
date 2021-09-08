@@ -1,4 +1,16 @@
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
 function RatingsPage(){
+
+    const dispatch = useDispatch();
+
+    useEffect(()=>{
+        dispatch({
+            type: 'FETCH_RATINGS'
+        })
+    }, [])
+
     return (
         <div>
             <h1>This will be my ratings table</h1>
