@@ -92,8 +92,8 @@ function BeerListPage() {
             <h1>This will be my Beer List page</h1>
             <FormControl variant="outlined" className="formInput">
                 <Select name="surly" id="brewLocations">
-                    <Option value="Surly">Surly</Option>
-                    <Option value="Indeed">Indeed</Option>
+                    <option value="Surly">Surly</option>
+                    <option value="Indeed">Indeed</option>
                 </Select>
             </FormControl>
             
