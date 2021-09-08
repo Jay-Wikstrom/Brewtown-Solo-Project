@@ -1,6 +1,6 @@
 import React from 'react';
 import LogOutButton from '../LogOutButton/LogOutButton';
-import {useSelector} from 'react-redux';
+import { useSelector } from 'react-redux';
 
 function UserPage() {
   // this component doesn't do much to start, just renders some user reducer info to the DOM
@@ -19,9 +19,9 @@ function UserPage() {
         </th>
 
         <td>
-          <tr>Jay</tr>
-          <tr>Jay123</tr>
-          <tr>jaywik33@yahoo.com</tr>
+          <tr>{user.name}</tr>
+          <tr>{user.username}</tr>
+          <tr>{user.email}</tr>
           <tr>2</tr>
           <tr>2</tr>
           <tr>Bronze</tr>
