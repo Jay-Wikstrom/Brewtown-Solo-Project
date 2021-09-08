@@ -26,16 +26,14 @@ function BeerRatingPage() {
             <h1>This will be my Beer Rating Page</h1>
             <table>
                 <thead>
-                    <th>Beer Name</th>
+                    <th>Beer</th>
                     <th>Rating</th>
                     <th>Type</th>
                     <th>Notes</th>
                 </thead>
 
                 <tbody>
-                    <td>
-                        <tr>Surly</tr>
-                    </td>
+                    
                     <td>
                         <tr>Furious</tr>
                     </td>
@@ -44,6 +42,9 @@ function BeerRatingPage() {
                     </td>
                     <td>
                         <tr>4.5</tr>
+                    </td>
+                    <td>
+                        <tr>My First Beer</tr>
                     </td>
                 </tbody>
             </table>
