@@ -18,9 +18,7 @@ function BeerListPage() {
                 const lon = position.coords.longitude;
 
                 let latitude = String(lat);
-                //console.log(latitude)
                 let longitude = String(lon);
-                //console.log(longitude);
 
                 axios({
                     method: 'GET',
@@ -30,7 +28,6 @@ function BeerListPage() {
                     }
 
                 }).then(response => {
-                    //setBrewery(response.data.name);
                     const newResult = response.data.map(d => ({
                         name: d.name
                     }))
@@ -38,63 +35,11 @@ function BeerListPage() {
                     console.log('axios response', response.data);
                     setBrewery(newResult);
                 })
-                
-                
-                // const data = { lat, lon }
-                // console.log(data)
-                
-                
-                // lat.toString();
-                // console.log(lat)
-                // const latitude = toString(lat);
-                // console.log(latitude);
-                // console.log(typeof lon)
-                
-
-                // const data = { lat, lon }
-                // console.log(data)
-                // const options = {
-                //     method: 'POST',
-                //     headers: {
-                //         'Content-Type': 'application/json'
-                //     },
-                //     body: JSON.stringify(data)
-                // };
-                // const response = await fetch('/beer-list', options);
-                // const geolocation = await response.json();
-                
-                // console.log(geolocation);
             })
         } else {
             console.log('geolocation not available')
         }
-        // axios({
-        //     method: 'GET',
-        //     url: 'https://api.openbrewerydb.org/breweries',
-        //     params: {
-        //         by_dist: `${latitude},${longitude}` //Minneapolis hard code
-        //     }
-
-        // }).then(response => {
-        //     console.log('axios response', response.data);
-        // })
     }, [])
-
-
-    
-    console.log(brewery[0])
-    
-    // brewery.map((brew, i) => {
-    //     brew
-    // })
-
-    const useStyles = makeStyles({
-        input: {
-            paddingLeft: 40
-        },
-    });
-    const classes = useStyles()
-
 
 
     const handleAdd = () => {
