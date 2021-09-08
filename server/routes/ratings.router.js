@@ -8,10 +8,11 @@ const router = express.Router();
 router.get('/', (req, res) => {
     // GET route code here
     const sqlQuery = `
-        SELECT "brewery".brewery_name,
+        SELECT "brewery".brewery,
 		"ratings".beer,
 		"ratings".type,
-		"ratings".notes,
+		"ratings".rating,
+        "ratings".notes,
 		"ratings".date
         FROM "ratings"
         JOIN "user"
@@ -33,8 +34,6 @@ router.get('/', (req, res) => {
  * POST route template
  */
 router.post('/', (req, res) => {
-    // POST route code here
-    
     const sqlQuery = `
         INSERT INTO "brewery" (brewery_name)
         VALUES ($1)

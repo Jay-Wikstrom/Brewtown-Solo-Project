@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Container, Grid, Card, Button, makeStyles } from '@material-ui/core';
 
 function RatingsPage(){
 
     const dispatch = useDispatch();
+    const ratings = useSelector(store => store.ratingsReducer)
 
     useEffect(()=>{
         dispatch({
@@ -11,9 +13,14 @@ function RatingsPage(){
         })
     }, [])
 
+    
+
     return (
+        
         <div>
             <h1>This will be my ratings table</h1>
+            
+
             <table>
                 <thead>
                     <th>Brewery</th>
@@ -23,6 +30,41 @@ function RatingsPage(){
                     <th>Notes</th>
                     <th>Date</th>
                 </thead>
+
+
+                <tbody>
+                    {ratings.map((rating, i) => {
+                        return (
+                            <tr key={i}>
+                                <td>
+                                    {rating.brewery}
+                                </td>
+                                <td>
+                                    {rating.beer}
+                                </td>
+                                <td>
+                                    {rating.type}
+                                </td>
+                                
+                                <td>
+                                    {rating.rating}
+                                </td>
+
+                                <td>
+                                    {rating.notes}
+                                </td>
+                                <td>
+                                    Date
+                                </td>
+                                <td>
+                                    <button>Delete</button>
+                                </td>
+                            </tr>
+                        );
+                    })}
+                </tbody>
+
+
                 <tbody>
                     <td>
                         <tr>Surly</tr>
@@ -71,10 +113,13 @@ function RatingsPage(){
                     </td>
                 </tbody>
 
-                
-                
-
             </table>
+
+         
+            
+            {/* {ratings.map(rating => (
+                <p key={rating.id}>Brewery: {rating.brewery} Image Url: {items.image_url}></p> */}
+            
         </div>
     )
 }
