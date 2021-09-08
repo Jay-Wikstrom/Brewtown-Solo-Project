@@ -1,8 +1,23 @@
 import { useHistory } from 'react-router-dom';
+import { useEffect } from 'react';
+import axios from 'axios';
 import { TextField, Container, Select, Button, Grid, InputLabel, FormControl, makeStyles } from '@material-ui/core';
 
 function BeerListPage() {
     const history = useHistory();
+
+    useEffect(() => {
+        axios({
+            method: 'GET',
+            url: 'https://api.openbrewerydb.org/breweries',
+            params: {
+                by_dist: '44.986656,-93.258133' //Minneapolis hard code
+            }
+
+        }).then(response => {
+            console.log('axios response', response.data);
+        })
+    }, [])
 
 
     if ('geolocation' in navigator) {
