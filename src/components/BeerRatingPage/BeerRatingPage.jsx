@@ -1,4 +1,26 @@
+import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
+
 function BeerRatingPage() {
+    // useEffect(() => {
+    //     console.log(location.pathname); // result: '/secondpage'
+    //     //console.log(location.state.detail); // result: 'some_value'
+    // }, [location]);
+
+    // useEffect(() => {
+    //     if (state) {
+    //         history.push('/beer-list', { state });
+    //     }
+    // }, [state]);
+
+    // const location = useLocation();
+
+    // console.log(location);
+    // console.log(location.state);
+
+    // // location.state would be undefined if user is directly taking this url
+    // const { state } = location.state || { searchInput: '' };
+
     return (
         <div>
             <h1>This will be my Beer Rating Page</h1>

@@ -10,7 +10,7 @@ const passport = require('./strategies/user.strategy');
 
 // Route includes
 const userRouter = require('./routes/user.router');
-//const ratingRouter = require('./routes/rating.router');
+const ratingsRouter = require('./routes/ratings.router');
 
 
 // Body parser middleware
@@ -28,7 +28,7 @@ app.use(passport.session());
 
 /* Routes */
 app.use('/api/user', userRouter);
-//app.use('/api/rating', ratingRouter);
+app.use('/api/ratings', ratingsRouter);
 
 app.post('/beer-list', (request, response) => {
   console.log(request.body)
