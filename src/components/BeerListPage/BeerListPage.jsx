@@ -1,7 +1,35 @@
 import { useHistory } from 'react-router-dom';
+import { TextField, Container, Select, Button, Grid, InputLabel, FormControl, makeStyles } from '@material-ui/core';
 
 function BeerListPage() {
     const history = useHistory();
+
+
+    if ('geolocation' in navigator) {
+        console.log('geolocation available')
+        navigator.geolocation.getCurrentPosition(async position => {
+
+            const lat = position.coords.latitude;
+            const lon = position.coords.longitude
+
+            const data = { lat, lon }
+            const options = {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            };
+            const response = await fetch('/beer-list', options);
+            const json = await response.json();
+            console.log(json);
+        })
+    } else {
+        console.log('geolocation not available')
+    }
+
+
+
 
     const handleAdd = () => {
         console.log('Handle Submit');
@@ -16,10 +44,12 @@ function BeerListPage() {
     return (
         <div>
             <h1>This will be my Beer List page</h1>
-            <select name="brewLocations" id="brewLocations">
-                <option value="Surly">Surly</option>
-                <option value="Indeed">Indeed</option>
-            </select>
+            <FormControl variant="outlined" className="formInput">
+                <Select name="surly" id="brewLocations">
+                    <Option value="Surly">Surly</Option>
+                    <Option value="Indeed">Indeed</Option>
+                </Select>
+            </FormControl>
             
             <button onClick={handleSelect}>Add Brewery</button>
 
