@@ -1,10 +1,13 @@
 import { useHistory } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { TextField, Container, Select, Button, Grid, InputLabel, FormControl, makeStyles } from '@material-ui/core';
 
 function BeerListPage() {
     const history = useHistory();
+
+    const [brewery, setBrewery] = useState([]);
+    const [selectBrewery, setSelectBrewery] = useState('');
 
     useEffect(() => {
         if ('geolocation' in navigator) {
@@ -15,19 +18,25 @@ function BeerListPage() {
                 const lon = position.coords.longitude;
 
                 let latitude = String(lat);
-                console.log(latitude)
+                //console.log(latitude)
                 let longitude = String(lon);
-                console.log(longitude);
+                //console.log(longitude);
 
                 axios({
                     method: 'GET',
                     url: 'https://api.openbrewerydb.org/breweries',
                     params: {
-                        by_dist: `${latitude},${longitude}` //Minneapolis hard code
+                        by_dist: `${latitude},${longitude}` 
                     }
 
                 }).then(response => {
+                    //setBrewery(response.data.name);
+                    const newResult = response.data.map(d => ({
+                        name: d.name
+                    }))
+                    console.log(newResult);
                     console.log('axios response', response.data);
+                    setBrewery(newResult);
                 })
                 
                 
@@ -73,7 +82,18 @@ function BeerListPage() {
 
 
     
+    console.log(brewery[0])
+    
+    // brewery.map((brew, i) => {
+    //     brew
+    // })
 
+    const useStyles = makeStyles({
+        input: {
+            paddingLeft: 40
+        },
+    });
+    const classes = useStyles()
 
 
 
@@ -84,20 +104,44 @@ function BeerListPage() {
 
     const handleSelect = () => {
         console.log('Handle Submit');
-        history.push('/beer-rating');
+        console.log(selectBrewery)
+        // history.push({
+        //     pathname: '/beer-rating',
+        //     state: { detail: selectBrewery }
+        // });
+        //history.push('/beer-rating');
     }
 
     return (
         <div>
             <h1>This will be my Beer List page</h1>
-            <FormControl variant="outlined" className="formInput">
-                <Select name="surly" id="brewLocations">
-                    <option value="Surly">Surly</option>
-                    <option value="Indeed">Indeed</option>
-                </Select>
-            </FormControl>
+            {/* <FormControl variant="outlined" className={classes.input}>
+            <InputLabel id="selectBrewery">Select a Brewery</InputLabel> */}
+            {/* <label for="brewery">Select Brewery</label> */}
+                <select
+                    id="brewery"
+                    name="brewery"
+                    label="selectBrewery"
+                    onChange={(e) => setSelectBrewery(e.target.value)}
+                    
+                    value={selectBrewery}
+                > Select Brewery
+                    <option value="" select>Select a Brewery</option>
+                    {brewery.map((brew, i) => {
+                        return <option key={i} value={brew.id}>{brew.name}</option>
+                    })}
+                    {/* <option value="Surly">Surly</option>
+                    <option value="Indeed">Indeed</option> */}
+                </select>
+            {/* </FormControl> */}
             
-            <button onClick={handleSelect}>Add Brewery</button>
+            <Button 
+                variant="contained"
+                color="primary"
+                onClick={handleSelect}
+            >
+                Add Brewery
+            </Button>
 
             <br />
             <br />
