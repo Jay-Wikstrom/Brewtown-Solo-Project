@@ -94,7 +94,7 @@ function BeerListPage({prop}) {
                 color="primary"
                 onClick={handleSelect}
             >
-                Add Brewery
+                Select Brewery
             </Button>
 
             <br />

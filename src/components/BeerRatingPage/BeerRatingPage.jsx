@@ -24,7 +24,26 @@ function BeerRatingPage() {
     return (
         <div>
             <h1>This will be my Beer Rating Page</h1>
-            <table>
+
+
+            <input 
+                type='text'
+                placeholder='Beer'
+            />
+            <input
+                type='text'
+                placeholder='Rating'
+            />
+            <input
+                type='text'
+                placeholder='Type'
+            />
+            <input
+                type='text'
+                placeholder='Notes'
+            />
+
+            {/* <table>
                 <thead>
                     <th>Beer</th>
                     <th>Rating</th>
@@ -47,7 +66,7 @@ function BeerRatingPage() {
                         <tr>My First Beer</tr>
                     </td>
                 </tbody>
-            </table>
+            </table> */}
         </div>
     )
 }

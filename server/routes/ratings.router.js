@@ -35,18 +35,39 @@ router.get('/', (req, res) => {
  * POST route template
  */
 router.post('/', (req, res) => {
-    const sqlQuery = `
-        INSERT INTO "brewery" (brewery_name)
+    const breweryName = [req.body.brewery]
+    const selectQuery = `
+        SELECT *
+        FROM "brewery"
+    `
+    const insertQuery = `
+        INSERT INTO "brewery" (brewery)
         VALUES ($1)
         RETURNING "id"
     `;
-    pool.query(sqlQuery, [req.body.brewery])
-        .then(res => {
-            res.sendStatus(201)
-        }).catch(error => {
-            console.log('POST route error', error)
-            res.sendStatus(500)
-        })
+    if( breweryName !== selectQuery){
+        pool.query(insertQuery, breweryName)
+            .then(res => {
+                res.sendStatus(201)
+            }).catch(error => {
+                console.log('POST route error', error)
+                res.sendStatus(500)
+            })
+    } 
+    
+    // const sqlQuery = `
+    //     INSERT INTO "brewery" (brewery)
+    //     VALUES ($1)
+    //     RETURNING "id"
+    // `;
+    // pool.query(sqlQuery, [req.body.brewery])
+    //     .then(res => {
+    //         res.sendStatus(201)
+    //     }).catch(error => {
+    //         console.log('POST route error', error)
+    //         res.sendStatus(500)
+    //     })
+    
 });
 
 router.delete('/:id', (req, res) => {
