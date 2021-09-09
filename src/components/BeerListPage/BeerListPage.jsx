@@ -42,7 +42,15 @@ function BeerListPage({ prop }) {
         } else {
             console.log('geolocation not available')
         }
+
+        fetchBrewery()
     }, [])
+
+    function fetchBrewery(){
+        dispatch({
+            type: 'FETCH_BREWERY'
+        })
+    }
 
 
     const handleAdd = () => {
@@ -59,10 +67,9 @@ function BeerListPage({ prop }) {
         console.log('Handle Submit');
         console.log(selectBrewery)
 
-        let selectedBrewery = String(selectBrewery)
         dispatch({
             type: 'SELECT_BREWERY',
-            payload: { brewery: selectedBrewery }
+            payload: { brewery: selectBrewery }
         })
         //history.push({
         //pathname: '/beer-rating', 
