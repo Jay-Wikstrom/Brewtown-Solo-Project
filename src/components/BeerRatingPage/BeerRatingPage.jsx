@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
+import { useDispatch, useSelector } from 'react-redux';
 
 function BeerRatingPage() {
     // useEffect(() => {
@@ -20,6 +21,17 @@ function BeerRatingPage() {
 
     // // location.state would be undefined if user is directly taking this url
     // const { state } = location.state || { searchInput: '' };
+
+    const breweryReducer = useSelector(store => store.breweryReducer);
+    
+
+    const dispatch = useDispatch();
+
+    useEffect(()=>{
+        dispatch({
+            type: 'FETCH_BREWERY',
+        })
+    },[])
 
     return (
         <div>

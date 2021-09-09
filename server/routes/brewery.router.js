@@ -3,13 +3,16 @@ const pool = require('../modules/pool');
 const router = express.Router();
 
 router.get('/', (req, res) => {
+    console.log('**********',req.query.brewery);
+    //const id = req.params.id;
     let sqlQuery = `
-    SELECT * FROM "brewery"
+        SELECT * FROM "brewery"
+        WHERE "brewery"= $1;
   `;
-    pool.query(sqlQuery)
+    pool.query(sqlQuery, [req.query.brewery])
         .then(result => {
-            console.log('GET data', result.rows)
-            res.send(result.rows)
+            console.log('GET data', result.rows[0])
+            res.send(result.rows[0])
         }).catch(error => {
             console.log('GET route error', error)
             res.sendStatus(500)
@@ -37,18 +40,50 @@ router.post('/', (req, res) => {
     //         })
     // }
 
-    const sqlQuery = `
-        INSERT INTO "brewery" (brewery)
-        VALUES ($1)
-        RETURNING "id"
-    `;
-    pool.query(sqlQuery, [req.body.brewery])
-        .then(res => {
-            res.sendStatus(201)
+    const selectQuery = `
+        SELECT *
+        FROM "brewery"
+        WHERE "brewery" = $1
+    `
+
+    pool.query(selectQuery, [req.body.brewery])
+        .then(dbRes => {
+            
+            if (dbRes.rows.length === 0){
+                console.log('Next line')
+                const sqlQuery = `
+                    INSERT INTO "brewery" (brewery)
+                    VALUES ($1)
+                    RETURNING "id"
+                `;
+                pool.query(sqlQuery, [req.body.brewery])
+                    .then(dbRes => {
+                        console.log('dbRes is:', dbRes)
+                        dbRes.sendStatus(201)
+                    }).catch(error => {
+                        console.log('POST route error', error)
+                        //res.sendStatus(500)
+                    })
+            }
+            console.log('peguins', dbRes.rows)
+            res.sendStatus(200)
         }).catch(error => {
             console.log('POST route error', error)
             //res.sendStatus(500)
         })
+
+    // const sqlQuery = `
+    //     INSERT INTO "brewery" (brewery)
+    //     VALUES ($1)
+    //     RETURNING "id"
+    // `;
+    // pool.query(sqlQuery, [req.body.brewery])
+    //     .then(res => {
+    //         res.sendStatus(201)
+    //     }).catch(error => {
+    //         console.log('POST route error', error)
+    //         //res.sendStatus(500)
+    //     })
 
 });
 
