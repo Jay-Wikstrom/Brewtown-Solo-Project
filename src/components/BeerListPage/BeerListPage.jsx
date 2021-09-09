@@ -4,12 +4,13 @@ import axios from 'axios';
 import { TextField, Container, Select, Button, Grid, InputLabel, FormControl, makeStyles } from '@material-ui/core';
 import { useDispatch } from 'react-redux';
 
-function BeerListPage({prop}) {
+function BeerListPage({ prop }) {
     const history = useHistory();
     const dispatch = useDispatch();
 
     const [brewery, setBrewery] = useState([]);
     const [selectBrewery, setSelectBrewery] = useState('');
+    const [addBrewery, setAddBrewery] = useState('');
 
     useEffect(() => {
         if ('geolocation' in navigator) {
@@ -26,7 +27,7 @@ function BeerListPage({prop}) {
                     method: 'GET',
                     url: 'https://api.openbrewerydb.org/breweries',
                     params: {
-                        by_dist: `${latitude},${longitude}` 
+                        by_dist: `${latitude},${longitude}`
                     }
 
                 }).then(response => {
@@ -46,50 +47,60 @@ function BeerListPage({prop}) {
 
     const handleAdd = () => {
         console.log('Handle Submit');
-        history.push('/beer-rating');
+        //history.push('/beer-rating');
+        dispatch({
+            type: 'ADD_BREWERY',
+            payload: addBrewery
+        })
     }
 
     const handleSelect = () => {
         console.log('Handle Submit');
         console.log(selectBrewery)
-       
+
         let selectedBrewery = String(selectBrewery)
         dispatch({
             type: 'SELECT_BREWERY',
-            payload: { brewery: selectedBrewery}
+            payload: { brewery: selectedBrewery }
         })
         //history.push({
-            //pathname: '/beer-rating', 
+        //pathname: '/beer-rating', 
         //history.push('/beer-rating', { state: selectBrewery });
-            
+
         //});
         //history.push('/beer-rating');
     }
 
+    const handleNext= () => {
+        history.push('/beer-rating');
+    }
+        
+
     return (
         <div>
-            <h1>This will be my Beer List page</h1>
+            <h1>This will be my Beer List page</h1><button onClick={handleNext}>Next page</button>
+            <br /><br /><br /><br />
             {/* <FormControl variant="outlined" className={classes.input}>
             <InputLabel id="selectBrewery">Select a Brewery</InputLabel> */}
             {/* <label for="brewery">Select Brewery</label> */}
-                <select
-                    id="brewery"
-                    name="brewery"
-                    label="selectBrewery"
-                    onChange={(e) => setSelectBrewery(e.target.value)}
-                    
-                    value={selectBrewery}
-                > Select Brewery
-                    <option value="" select>Select a Brewery</option>
-                    {brewery.map((brew, i) => {
-                        return <option key={i} value={brew.id}>{brew.name}</option>
-                    })}
-                    {/* <option value="Surly">Surly</option>
+            <select
+                id="brewery"
+                name="brewery"
+                label="selectBrewery"
+                onChange={(e) => setSelectBrewery(e.target.value)}
+
+                value={selectBrewery}
+            > Select Brewery
+                <option value="" select>Select a Brewery</option>
+                {brewery.map((brew, i) => {
+                    return <option key={i} value={brew.id}>{brew.name}</option>
+                })}
+                {/* <option value="Surly">Surly</option>
                     <option value="Indeed">Indeed</option> */}
-                </select>
+            </select>
             {/* </FormControl> */}
-            
-            <Button 
+
+            <Button
                 variant="contained"
                 color="primary"
                 onClick={handleSelect}
@@ -101,9 +112,11 @@ function BeerListPage({prop}) {
             <br />
             <br />
 
-            <input 
+            <input
                 type="text"
                 placeholder="Add Your Own Brewery"
+                onChange={e => setAddBrewery(e.target.value)}
+                value={addBrewery}
             />
             <button onClick={handleAdd}>Add Brewery</button>
         </div>
