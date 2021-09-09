@@ -5,7 +5,7 @@ import { Container, Grid, Card, Button, makeStyles } from '@material-ui/core';
 function RatingsPage(){
 
     const dispatch = useDispatch();
-    const ratings = useSelector(store => store.ratingsReducer)
+    const ratings = useSelector(store => store.ratingsReducer);
 
     useEffect(()=>{
         dispatch({
@@ -13,6 +13,13 @@ function RatingsPage(){
         })
     }, [])
 
+    const handleDelete = (id) => {
+        console.log(id);
+        dispatch({
+            type: 'DELETE_RATING',
+            payload: id
+        })
+    }
     
 
     return (
@@ -32,9 +39,9 @@ function RatingsPage(){
 
 
                 <tbody>
-                    {ratings.map((rating, i) => {
+                    {ratings.map((rating) => {
                         return (
-                            <tr key={i}>
+                            <tr key={rating.id}>
                                 <td>
                                     {rating.brewery}
                                 </td>
@@ -56,7 +63,7 @@ function RatingsPage(){
                                     Date
                                 </td>
                                 <td>
-                                    <button>Delete</button>
+                                    <button onClick={() => handleDelete(rating.id)}>Delete</button>
                                 </td>
                             </tr>
                         );
