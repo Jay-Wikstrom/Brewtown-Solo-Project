@@ -1,9 +1,13 @@
 import axios from "axios";
 import { takeLatest, put } from 'redux-saga/effects';
 
-function* fetchBrewery() {
+function* fetchBrewery(action) {
     try {
-        const response = yield axios.get('/api/brewery')
+        console.log('action payload*********', action.payload.brewery)
+        const breweryParams = {
+            brewery: action.payload.brewery
+        }
+        const response = yield axios.get('/api/brewery', { params: breweryParams})
         console.log('response is', response)
         yield put({ type: 'SET_BREWERY', payload: response.data });
     }
@@ -17,7 +21,8 @@ function* selectBrewery(action) {
         yield axios.post('/api/brewery', action.payload);
         yield put({
             //Fetch from server
-            type: 'FETCH_BREWERY'
+            type: 'FETCH_BREWERY',
+            payload: action.payload
         })
     } catch (error) {
         console.log(error)
@@ -30,7 +35,8 @@ function* addBrewery(action) {
         console.log(action.payload);
         yield put({
             //Fetch from server
-            type: 'FETCH_BREWERY'
+            type: 'FETCH_BREWERY',
+            payload: action.payload
         })
     } catch (error) {
         console.log(error)

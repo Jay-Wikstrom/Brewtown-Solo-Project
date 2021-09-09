@@ -48,7 +48,7 @@ function BeerListPage({ prop }) {
 
     function fetchBrewery(){
         dispatch({
-            type: 'FETCH_BREWERY'
+            type: 'FETCH_BREWERY',
         })
     }
 
@@ -56,7 +56,7 @@ function BeerListPage({ prop }) {
     const handleAdd = () => {
         console.log('Handle Submit');
         console.log(addBrewery)
-        //history.push('/beer-rating');
+        history.push('/beer-rating');
         dispatch({
             type: 'ADD_BREWERY',
             payload: {brewery: addBrewery}
@@ -71,12 +71,13 @@ function BeerListPage({ prop }) {
             type: 'SELECT_BREWERY',
             payload: { brewery: selectBrewery }
         })
+        //history.push('/beer-rating');
         //history.push({
         //pathname: '/beer-rating', 
         //history.push('/beer-rating', { state: selectBrewery });
 
         //});
-        //history.push('/beer-rating');
+        
     }
 
     const handleNext= () => {

@@ -1,4 +1,4 @@
-const breweryReducer = (state = [], action) => {
+const breweryReducer = (state = {}, action) => {
     switch (action.type) {
         case 'SET_BREWERY':
             return action.payload
