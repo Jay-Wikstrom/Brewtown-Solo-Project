@@ -20,35 +20,13 @@ router.get('/', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-    // const breweryName = [req.body.brewery]
-    // const selectQuery = `
-    //     SELECT *
-    //     FROM "brewery"
-    // `
-    // const insertQuery = `
-    //     INSERT INTO "brewery" (brewery)
-    //     VALUES ($1)
-    //     RETURNING "id"
-    // `;
-    // if (breweryName !== selectQuery) {
-    //     pool.query(insertQuery, breweryName)
-    //         .then(res => {
-    //             res.sendStatus(201)
-    //         }).catch(error => {
-    //             console.log('POST route error', error)
-    //             res.sendStatus(500)
-    //         })
-    // }
-
     const selectQuery = `
         SELECT *
         FROM "brewery"
         WHERE "brewery" = $1
     `
-
     pool.query(selectQuery, [req.body.brewery])
         .then(dbRes => {
-            
             if (dbRes.rows.length === 0){
                 console.log('Next line')
                 const sqlQuery = `
@@ -65,26 +43,12 @@ router.post('/', (req, res) => {
                         //res.sendStatus(500)
                     })
             }
-            console.log('peguins', dbRes.rows)
+            console.log('******', dbRes.rows)
             res.sendStatus(200)
         }).catch(error => {
             console.log('POST route error', error)
             //res.sendStatus(500)
         })
-
-    // const sqlQuery = `
-    //     INSERT INTO "brewery" (brewery)
-    //     VALUES ($1)
-    //     RETURNING "id"
-    // `;
-    // pool.query(sqlQuery, [req.body.brewery])
-    //     .then(res => {
-    //         res.sendStatus(201)
-    //     }).catch(error => {
-    //         console.log('POST route error', error)
-    //         //res.sendStatus(500)
-    //     })
-
 });
 
 module.exports = router;
