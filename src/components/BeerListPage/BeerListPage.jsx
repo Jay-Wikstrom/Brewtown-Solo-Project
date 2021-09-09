@@ -118,7 +118,13 @@ function BeerListPage({ prop }) {
                 onChange={e => setAddBrewery(e.target.value)}
                 value={addBrewery}
             />
-            <button onClick={handleAdd}>Add Brewery</button>
+            <Button 
+                variant="contained"
+                color="primary"
+                onClick={handleAdd}
+            >
+                Add Brewery
+            </Button>
         </div>
     )
 }
