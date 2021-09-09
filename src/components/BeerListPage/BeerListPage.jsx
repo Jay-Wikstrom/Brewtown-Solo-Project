@@ -47,10 +47,11 @@ function BeerListPage({ prop }) {
 
     const handleAdd = () => {
         console.log('Handle Submit');
+        console.log(addBrewery)
         //history.push('/beer-rating');
         dispatch({
             type: 'ADD_BREWERY',
-            payload: addBrewery
+            payload: {brewery: addBrewery}
         })
     }
 
@@ -78,7 +79,8 @@ function BeerListPage({ prop }) {
 
     return (
         <div>
-            <h1>This will be my Beer List page</h1><button onClick={handleNext}>Next page</button>
+            <h1>This will be my Beer List page</h1>
+            <button onClick={handleNext}>Next page</button>
             <br /><br /><br /><br />
             {/* <FormControl variant="outlined" className={classes.input}>
             <InputLabel id="selectBrewery">Select a Brewery</InputLabel> */}
@@ -115,10 +117,16 @@ function BeerListPage({ prop }) {
             <input
                 type="text"
                 placeholder="Add Your Own Brewery"
-                onChange={e => setAddBrewery(e.target.value)}
+                onChange={(e) => setAddBrewery(e.target.value)}
                 value={addBrewery}
             />
-            <button onClick={handleAdd}>Add Brewery</button>
+            <Button 
+                variant="contained"
+                color="primary"
+                onClick={handleAdd}
+            >
+                Add Brewery
+            </Button>
         </div>
     )
 }
