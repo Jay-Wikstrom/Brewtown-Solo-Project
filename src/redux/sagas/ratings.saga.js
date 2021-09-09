@@ -11,7 +11,21 @@ function* fetchRatings(){
     }
 }
 
+function* deleteRating(action) {
+    try {
+        //Delete from api/shelf server
+        yield axios.delete(`api/ratings/${action.payload}`);
+        yield put({
+            //Fetch from server
+            type: 'FETCH_RATINGS'
+        })
+    } catch (error) {
+        console.log(error)
+    }
+}; //end deleteItem function
+
 function* ratingsSaga(){
     yield takeLatest('FETCH_RATINGS', fetchRatings)
+    yield takeLatest('DELETE_RATING', deleteRating)
 }
 export default ratingsSaga;
