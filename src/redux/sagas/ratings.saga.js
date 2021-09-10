@@ -27,7 +27,6 @@ function* addBeerRating(action){
 
 function* deleteRating(action) {
     try {
-        //Delete from api/shelf server
         yield axios.delete(`api/ratings/${action.payload}`);
         yield put({
             //Fetch from server
@@ -36,7 +35,7 @@ function* deleteRating(action) {
     } catch (error) {
         console.log(error)
     }
-}; //end deleteItem function
+}; 
 
 function* ratingsSaga(){
     yield takeLatest('FETCH_RATINGS', fetchRatings)

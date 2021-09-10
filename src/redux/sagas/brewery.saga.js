@@ -27,7 +27,7 @@ function* selectBrewery(action) {
     } catch (error) {
         console.log(error)
     }
-}; //end addItem function
+}; 
 
 function* addBrewery(action) {
     try {
@@ -41,7 +41,7 @@ function* addBrewery(action) {
     } catch (error) {
         console.log(error)
     }
-}; //end addItem function
+}; 
 
 function* brewerySaga() {
     yield takeLatest('SELECT_BREWERY', selectBrewery);
