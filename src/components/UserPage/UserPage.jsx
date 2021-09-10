@@ -1,27 +1,32 @@
 import React from 'react';
 import LogOutButton from '../LogOutButton/LogOutButton';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+
 
 function UserPage() {
   // this component doesn't do much to start, just renders some user reducer info to the DOM
   const user = useSelector((store) => store.user);
+  const dispatch = useDispatch();
+  const history = useHistory();
+
   return (
     <div className="container">
       <h2>Welcome, {user.username}!</h2>
       <table>
         <th>
-          <tr>Name:</tr>
+          {/* <tr>Name:</tr> */}
           <tr>Username:</tr>
-          <tr>Email:</tr>
+          {/* <tr>Email:</tr> */}
           <tr>Breweries Visited:</tr>
           <tr>Beers Rated:</tr>
           <tr>Tier:</tr>
         </th>
 
         <td>
-          <tr>{user.name}</tr>
+          {/* <tr>{user.name}</tr> */}
           <tr>{user.username}</tr>
-          <tr>{user.email}</tr>
+          {/* <tr>{user.email} </tr> */}
           <tr>2</tr>
           <tr>2</tr>
           <tr>Bronze</tr>
