@@ -41,7 +41,7 @@ function BeerRatingPage() {
 
     return (
         <div>
-            <h1>This will be my Beer Rating Page</h1>
+            <h1>{breweryReducer.brewery}</h1>
             <form onSubmit={handleSubmit}>
                 <TextField
                     type='text'

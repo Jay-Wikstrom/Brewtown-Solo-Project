@@ -81,8 +81,8 @@ function BeerListPage({ prop }) {
 
     return (
         <div>
-            <h1>This will be my Beer List page</h1>
-            <button onClick={handleNext}>Next page</button>
+            <h1>Select or Add a Brewery</h1>
+            
             <br /><br /><br /><br />
             {/* <FormControl variant="outlined" className={classes.input}>
             <InputLabel id="selectBrewery">Select a Brewery</InputLabel> */}

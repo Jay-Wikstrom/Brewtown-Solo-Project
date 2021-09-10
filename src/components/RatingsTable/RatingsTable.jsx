@@ -25,7 +25,7 @@ function RatingsPage(){
     return (
         
         <div>
-            <h1>This will be my ratings table</h1>
+            <h1>Brews Rated</h1>
 
             <table>
                 <thead>
