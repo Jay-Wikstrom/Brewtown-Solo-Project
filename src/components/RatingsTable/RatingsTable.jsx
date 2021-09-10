@@ -1,11 +1,11 @@
+import { Paper, TableBody, TableCell } from '@material-ui/core';
 import React, { useState, useEffect } from 'react';
+import { NavItem } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-//import { Container, Grid, Card, Button, makeStyles } from '@material-ui/core';
-import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
-import BootstrapTable from 'react-bootstrap-table-next';
+import { TableRow, TableHead, Table, Button } from "@material-ui/core";
+
 
 function RatingsPage(){
-
     const dispatch = useDispatch();
     const ratings = useSelector(store => store.ratingsReducer);
 
@@ -29,7 +29,44 @@ function RatingsPage(){
         <div>
             <h1>Brews Rated</h1>
 
-            <table>
+            <Paper>
+                <Table>
+                    <TableHead>
+                       <TableRow>
+                            <TableCell>Brewery</TableCell>
+                            <TableCell>Beer</TableCell>
+                            <TableCell>Type</TableCell>
+                            <TableCell>Rating</TableCell>
+                            <TableCell>Notes</TableCell>
+                       </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        {
+                            ratings.map(rating =>
+
+                            (<TableRow key={rating.id}>
+                                <TableCell>{rating.brewery}</TableCell>
+                                <TableCell>{rating.beer}</TableCell>
+                                <TableCell>{rating.type}</TableCell>
+                                <TableCell>{rating.rating}</TableCell>
+                                <TableCell>{rating.notes}</TableCell>
+                                <TableCell>
+                                    <Button 
+                                        onClick={() => handleDelete(rating.id)}
+                                        variant="contained"
+                                        color="secondary"
+                                    >
+                                        Delete
+                                    </Button>
+                                </TableCell>
+                            </TableRow>)
+                            )
+                        }
+                    </TableBody>
+                </Table>
+            </Paper>
+
+            {/* <table>
                 <thead>
                     <th>Brewery</th>
                     <th>Beer</th>
@@ -71,7 +108,7 @@ function RatingsPage(){
                         );
                     })}
                 </tbody>
-            </table>
+            </table> */}
             
         </div>
     )
