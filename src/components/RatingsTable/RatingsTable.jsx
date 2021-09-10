@@ -19,6 +19,7 @@ function RatingsPage(){
         { id: 'beer', label: 'Beer' },
         { id: 'type', label: 'Type' },
         { id: 'ratings', label: 'Ratings' },
+        { id: 'date', label: 'Date'},
         { id: 'notes', label: 'Notes' },
     ]
 
@@ -93,6 +94,11 @@ function RatingsPage(){
         return sort(ratings, getComparator(order, orderBy));
     }
 
+    function formatDate(date){
+       let d = new Date(date)
+       return d.toLocaleDateString()
+    }
+
     return (
         <div>
             <h1>Brews Rated</h1>
@@ -124,7 +130,9 @@ function RatingsPage(){
                                 <TableCell>{rating.beer}</TableCell>
                                 <TableCell>{rating.type}</TableCell>
                                 <TableCell>{rating.rating}</TableCell>
+                                <TableCell>{formatDate(rating.date)}</TableCell>
                                 <TableCell>{rating.notes}</TableCell>
+                                
                                 <TableCell>
                                     <Button 
                                         onClick={() => handleDelete(rating.id)}

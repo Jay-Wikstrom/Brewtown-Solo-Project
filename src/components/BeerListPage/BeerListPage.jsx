@@ -52,6 +52,8 @@ function BeerListPage({ prop }) {
         })
     }
 
+    // const d = new Date();
+    // console.log(d)
 
     const handleAdd = () => {
         console.log('Handle Submit');
@@ -82,6 +84,7 @@ function BeerListPage({ prop }) {
     return (
         <div>
             <h1>Select or Add a Brewery</h1>
+            {/* <h1>{d}</h1> */}
             
             <br /><br /><br /><br />
             {/* <FormControl variant="outlined" className={classes.input}>

@@ -33,8 +33,8 @@ router.get('/', (req, res) => {
 
 router.post('/', (req, res) => {
     const sqlQuery = `
-        INSERT INTO "ratings" ("user_id", "brewery_id", "beer", "type", "rating", "notes")
-        VALUES ($1, $2, $3, $4, $5, $6)
+        INSERT INTO "ratings" ("user_id", "brewery_id", "beer", "type", "rating", "notes", "date")
+        VALUES ($1, $2, $3, $4, $5, $6, $7)
         RETURNING "id"
     `;
     pool.query(sqlQuery, 
@@ -44,6 +44,7 @@ router.post('/', (req, res) => {
         req.body.beer,
         req.body.type,
         req.body.rating,
+        req.body.date,
         req.body.notes 
     ])
         .then(dbRes => {

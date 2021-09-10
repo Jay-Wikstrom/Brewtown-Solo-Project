@@ -13,6 +13,8 @@ function BeerRatingPage() {
     const [ratingInput, setRatingsInput] = useState('');
     const [typeInput, setTypeInput] = useState('');
     const [notesInput, setNotesInput] = useState('');
+    //
+    
 
     const dispatch = useDispatch();
 
@@ -32,6 +34,7 @@ function BeerRatingPage() {
                 beer: beerInput,
                 type: typeInput,
                 rating: ratingInput,
+                //
                 notes: notesInput,
             }
             //ratings
