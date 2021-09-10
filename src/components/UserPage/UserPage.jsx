@@ -15,25 +15,23 @@ function UserPage() {
       <h2>Welcome, {user.username}!</h2>
       <table>
         <th>
-          {/* <tr>Name:</tr> */}
+          
           <tr>Username:</tr>
-          {/* <tr>Email:</tr> */}
+          
           <tr>Breweries Visited:</tr>
           <tr>Beers Rated:</tr>
           <tr>Tier:</tr>
         </th>
 
         <td>
-          {/* <tr>{user.name}</tr> */}
+          
           <tr>{user.username}</tr>
-          {/* <tr>{user.email} </tr> */}
+          
           <tr>2</tr>
           <tr>2</tr>
           <tr>Bronze</tr>
         </td>
         <td>
-          <tr><button>Edit</button></tr>
-          <tr><button>Edit</button></tr>
           <tr><button>Edit</button></tr>
         </td>
       </table>
