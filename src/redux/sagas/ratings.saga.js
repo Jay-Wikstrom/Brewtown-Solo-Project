@@ -11,6 +11,20 @@ function* fetchRatings(){
     }
 }
 
+function* addBeerRating(action){
+    try {
+        yield axios.post('/api/ratings', action.payload);
+        console.log(action.payload);
+        yield put({
+            //Fetch from server
+            type: 'FETCH_RATINGS',
+            payload: action.payload
+        })
+    } catch (error) {
+        console.log('***********', error)
+    }
+}
+
 function* deleteRating(action) {
     try {
         //Delete from api/shelf server
@@ -27,5 +41,6 @@ function* deleteRating(action) {
 function* ratingsSaga(){
     yield takeLatest('FETCH_RATINGS', fetchRatings)
     yield takeLatest('DELETE_RATING', deleteRating)
+    yield takeLatest('ADD_BEER_RATING', addBeerRating)
 }
 export default ratingsSaga;

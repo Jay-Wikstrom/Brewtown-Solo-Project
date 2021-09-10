@@ -71,7 +71,7 @@ function BeerListPage({ prop }) {
             type: 'SELECT_BREWERY',
             payload: { brewery: selectBrewery }
         })
-        //history.push('/beer-rating');
+        history.push('/beer-rating');
         //history.push({
         //pathname: '/beer-rating', 
         //history.push('/beer-rating', { state: selectBrewery });
