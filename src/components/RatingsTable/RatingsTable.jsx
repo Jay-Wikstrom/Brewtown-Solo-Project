@@ -1,8 +1,8 @@
-import { Paper, TableBody, TableCell } from '@material-ui/core';
+import { Paper, TableBody, TableCell, TableSortLabel } from '@material-ui/core';
 import React, { useState, useEffect } from 'react';
 import { NavItem } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { TableRow, TableHead, Table, Button } from "@material-ui/core";
+import { TableRow, TableHead, Table, Button, makeStyles } from "@material-ui/core";
 
 
 function RatingsPage(){
@@ -22,7 +22,75 @@ function RatingsPage(){
             payload: id
         })
     }
-    
+
+    const useStyles = makeStyles(theme => ({
+        table: {
+            marginTop: theme.spacing(3),
+            '& thead th': {
+                fontWeight: '600',
+                color: theme.palette.primary.main,
+                backgroundColor: theme.palette.primary.light,
+            },
+            '& tbody td': {
+                fontWeight: '300',
+            },
+            '& tbody tr:hover':{
+                backgroundColor: '#fffbf2',
+                cursor: 'pointer'
+            }
+
+        }
+    }))
+    const classes = useStyles();
+    const pages = [5, 10, 25]
+    const [page, setPages] = useState(0);
+    const [rowsPerPage, setRowsPerPage] = useState(5)
+    const [order, setOrder] = useState();
+    const [orderBy, setOrderBy] = useState()
+
+    const handleSort = cellId => {
+        const isAsc = orderBy === cellId && order === "asc";
+        setOrder(isAsc ? 'desc' : 'asc');
+        setOrderBy(cellId)
+    }
+
+    const headCells = [
+        { id: 'brewery', label: 'Brewery'},
+        { id: 'beer', label: 'Beer' },
+        { id: 'type', label: 'Type' },
+        { id: 'ratings', label: 'Ratings' },
+        { id: 'notes', label: 'Notes' },
+    ]
+
+    function sort(array, comparator){
+        const stabilizedThis = array.map((el, index) => [el, index]);
+        stabilizedThis.sort((a,b) => {
+            const order = comparator(a[0], b[0]);
+            if(order !== 0) return order;
+            return a[1] - b[1];
+        })
+        return stabilizedThis.map((el) => el[0])
+    }
+
+    function getComparator(order, orderBy) {
+        return order === 'desc'
+            ? (a, b) => descendingComparator(a, b, orderBy)
+            : (a, b) => -descendingComparator(a, b, orderBy)
+    }
+
+    function descendingComparator(a, b, orderBy){
+        if(b[orderBy] < a[orderBy]){
+            return -1;
+        }
+        if (b[orderBy] < a[orderBy]){
+            return 1;
+        }
+        return 0
+    }
+
+    const afterSort = () => {
+        return sort(ratings, getComparator(order, orderBy));
+    }
 
     return (
         
@@ -30,19 +98,53 @@ function RatingsPage(){
             <h1>Brews Rated</h1>
 
             <Paper>
-                <Table>
+                <Table className={classes.table}>
                     <TableHead>
                        <TableRow>
-                            <TableCell>Brewery</TableCell>
-                            <TableCell>Beer</TableCell>
-                            <TableCell>Type</TableCell>
-                            <TableCell>Rating</TableCell>
-                            <TableCell>Notes</TableCell>
+                            
+                            {
+                                headCells.map(headCell => (
+                                    <TableCell key={headCell.id}
+                                    sortDirection = {orderBy === headCell.id ? order:false}>
+                                        <TableSortLabel
+                                            active={orderBy === headCell.id}
+                                            direction = {orderBy === headCell.id ? order: 'asc'}
+                                            onClick={() => { handleSort(headCell.id)}}
+                                        >
+                                            {headCell.label}
+                                        </TableSortLabel>
+                                    </TableCell>
+
+                                    
+                                ))
+                            }
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            {/* <TableCell>
+                                <TableSortLabel>Brewery</TableSortLabel>
+                            </TableCell>
+                            <TableCell>
+                                <TableSortLabel>Beer</TableSortLabel>
+                            </TableCell>
+                            <TableCell>
+                                <TableSortLabel>Type</TableSortLabel>
+                            </TableCell>
+                            <TableCell>
+                                <TableSortLabel>Rating</TableSortLabel>
+                            </TableCell>
+                            <TableCell>
+                                <TableSortLabel>Notes</TableSortLabel>
+                            </TableCell> */}
                        </TableRow>
                     </TableHead>
                     <TableBody>
                         {
-                            ratings.map(rating =>
+                            afterSort().map(rating =>
 
                             (<TableRow key={rating.id}>
                                 <TableCell>{rating.brewery}</TableCell>
