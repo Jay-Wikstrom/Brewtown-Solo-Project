@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Container, Grid, Card, Button, makeStyles } from '@material-ui/core';
+//import { Container, Grid, Card, Button, makeStyles } from '@material-ui/core';
+import 'react-bootstrap-table-next/dist/react-bootstrap-table2.min.css';
+import BootstrapTable from 'react-bootstrap-table-next';
 
 function RatingsPage(){
 

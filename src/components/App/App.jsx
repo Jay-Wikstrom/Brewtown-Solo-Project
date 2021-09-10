@@ -21,6 +21,7 @@ import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import RatingsPage from '../RatingsTable/RatingsTable';
 import BeerListPage from '../BeerListPage/BeerListPage';
 import BeerRatingPage from '../BeerRatingPage/BeerRatingPage';
