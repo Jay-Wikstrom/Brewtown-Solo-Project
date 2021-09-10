@@ -70,6 +70,32 @@ router.get('/', (req, res) => {
 
 // });
 
+router.post('/', (req, res) => {
+
+
+    const sqlQuery = `
+        INSERT INTO "ratings" ("user_id", "brewery_id", "beer", "type", "rating", "notes")
+        VALUES ($1, $2, $3, $4, $5, $6)
+        RETURNING "id"
+    `;
+    pool.query(sqlQuery, 
+    [
+        req.body.userId,
+        req.body.breweryId,
+        req.body.beer,
+        req.body.type,
+        req.body.rating,
+        req.body.notes 
+    ])
+        .then(dbRes => {
+            dbRes.sendStatus(201)
+        }).catch(error => {
+            console.log('POST route error', error)
+            //dbRes.sendStatus(500)
+        })
+
+});
+
 router.delete('/:id', (req, res) => {
     // endpoint functionality
     let sqlQuery = `
