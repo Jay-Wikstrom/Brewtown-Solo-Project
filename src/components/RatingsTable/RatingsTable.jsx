@@ -120,6 +120,7 @@ function RatingsPage(){
                                     </TableCell>
                                 ))
                             }
+                            <TableCell>Delete</TableCell>
                        </TableRow>
                     </TableHead>
                     <TableBody>
