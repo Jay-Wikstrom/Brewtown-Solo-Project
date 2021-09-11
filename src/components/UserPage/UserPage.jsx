@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
@@ -13,6 +13,8 @@ function UserPage() {
   const dispatch = useDispatch();
   const history = useHistory();
 
+  const [buttonClick, setButtonClick] = useState(true);
+
   const useStyles = makeStyles(theme => ({
     table: {
       marginTop: theme.spacing(3),
@@ -22,7 +24,7 @@ function UserPage() {
         backgroundColor: theme.palette.success.light,
       },
       '& td': {
-        fontWeight: '300',
+        fontWeight: '500',
       },
       '& tr:hover': {
         backgroundColor: '#fffbf2',
@@ -31,6 +33,34 @@ function UserPage() {
     }
   }))
   const classes = useStyles();
+
+
+
+  
+  const toggleButtonClick = () => {
+    setButtonClick(!buttonClick);
+  }
+  const toggleButton = () => {
+    if (buttonClick) {
+      return;
+    }
+    else {
+      return (
+        <div>
+          <input 
+            type="text"
+            placeholder="edit username"
+          /> 
+          <button>Submit Changes</button>
+        </div>
+      )
+    }
+  }
+
+
+
+
+
 
   return (
     <div className="container">
@@ -63,10 +93,13 @@ function UserPage() {
 
       <Button
         variant="contained"
+        onClick={toggleButtonClick}
         //color="secondary"
       >
         Edit User Data
       </Button>
+
+      {toggleButton()}
 
       {/* <DataGridPro
         columns={[
