@@ -10,6 +10,7 @@ import { Paper, TableBody, TableCell, TableSortLabel } from '@material-ui/core';
 function UserPage() {
   // this component doesn't do much to start, just renders some user reducer info to the DOM
   const user = useSelector((store) => store.user);
+  const beerCount = useSelector((store) => store.beerCountReducer);
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -90,7 +91,7 @@ function UserPage() {
 
           <TableRow>
             <TableCell>Beers Rated:</TableCell>
-            <TableCell>877</TableCell>
+            <TableCell>{beerCount}</TableCell>
           </TableRow>
 
           <TableRow>

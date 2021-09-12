@@ -38,6 +38,9 @@ function BeerRatingPage() {
             }
             //ratings
         })
+        dispatch({
+            type: 'ADD_BEER_COUNT'
+        })
         history.push('/ratings');
     }
 
