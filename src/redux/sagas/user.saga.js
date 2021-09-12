@@ -27,7 +27,7 @@ function* fetchUser() {
 function* editItem(action) {
   try {
     //PUT to api/shelf server
-    yield axios.put(`api/user/${action.payload}`);
+    yield axios.put(`api/user/${action.payload.id}`, action.payload);
     yield put({
       //Fetch from server
       type: 'FETCH_USER'

@@ -48,13 +48,14 @@ router.post('/logout', (req, res) => {
 });
 
 router.put('/:id', (req, res) => {
+  console.log('req.body is', req.body)
   let sqlQuery = `
     UPDATE "user"
     SET "username" = $1
     WHERE "id" = $2
   `;
   let sqlParams = [
-    req.body.id,
+    req.body.username,
     req.params.id
   ];
   pool.query(sqlQuery, sqlParams)

@@ -18,7 +18,7 @@ function RatingsPage(){
         { id: 'brewery', label: 'Brewery' },
         { id: 'beer', label: 'Beer' },
         { id: 'type', label: 'Type' },
-        { id: 'ratings', label: 'Ratings' },
+        { id: 'ratings', label: 'Rating' },
         // { id: 'date', label: 'Date'},
         { id: 'notes', label: 'Notes' },
     ]
@@ -97,10 +97,12 @@ function RatingsPage(){
         return sort(ratings, getComparator(order, orderBy));
     }
 
-    // function formatDate(date){
-    //    let d = new Date(date)
-    //    return d.toLocaleDateString()
-    // }
+    function formatDate(date){
+       let d = new Date(date)
+       console.log('****************************',d.toLocaleDateString())
+       return d.toLocaleDateString()
+    }
+    
 
     return (
         <div>
@@ -134,7 +136,7 @@ function RatingsPage(){
                                 <TableCell>{rating.beer}</TableCell>
                                 <TableCell>{rating.type}</TableCell>
                                 <TableCell>{rating.rating}</TableCell>
-                                {/* <TableCell>{formatDate(rating.date)}</TableCell> */}
+                                <TableCell>{formatDate(rating.date)}</TableCell>
                                 <TableCell>{rating.notes}</TableCell>
                                 
                                 <TableCell>

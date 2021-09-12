@@ -17,6 +17,8 @@ function UserPage() {
   const [editUsername, setEditUsername] = useState('');
   const [buttonClick, setButtonClick] = useState(true);
 
+  let payload = {}
+
 
   useEffect(() => {
     dispatch({
@@ -26,7 +28,7 @@ function UserPage() {
 
   const beerCount = ratings.length
   //const beerCount = 100
-  console.log('****************', beerCount)
+  // console.log('****************', beerCount)
 
 
   const useStyles = makeStyles(theme => ({
@@ -48,10 +50,14 @@ function UserPage() {
   }))
   const classes = useStyles();
 
-  const handleEdit = (id) => {
+  const handleEdit = () => {
+    payload = {
+      username: editUsername,
+      id: user.id
+    }
     dispatch({
       type: 'EDIT',
-      payload: id
+      payload: payload
     })
   }
 
@@ -92,7 +98,7 @@ function UserPage() {
             onChange={e => setEditUsername(e.target.value)}
 
           /> 
-          <button onClick={() => handleEdit(editUsername)}>Submit Changes</button>
+          <button onClick={() => handleEdit()}>Submit Changes</button>
         </div>
       )
     }

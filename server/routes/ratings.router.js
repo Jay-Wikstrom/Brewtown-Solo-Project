@@ -44,7 +44,6 @@ router.post('/', (req, res) => {
         req.body.beer,
         req.body.type,
         req.body.rating,
-        //req.body.date,
         req.body.notes 
     ])
         .then(dbRes => {
