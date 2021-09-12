@@ -19,7 +19,7 @@ function RatingsPage(){
         { id: 'beer', label: 'Beer' },
         { id: 'type', label: 'Type' },
         { id: 'ratings', label: 'Rating' },
-        // { id: 'date', label: 'Date'},
+        { id: 'date', label: 'Date'},
         { id: 'notes', label: 'Notes' },
     ]
 
@@ -35,9 +35,6 @@ function RatingsPage(){
             type: 'DELETE_RATING',
             payload: id
         })
-        // dispatch({
-        //     type: 'SUBTRACT_BEER_COUNT'
-        // })
     }
 
     const useStyles = makeStyles(theme => ({
