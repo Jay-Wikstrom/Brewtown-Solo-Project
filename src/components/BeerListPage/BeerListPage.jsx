@@ -2,6 +2,7 @@ import { useHistory } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { TextField, Container, Select, Button, Grid, InputLabel, FormControl, makeStyles } from '@material-ui/core';
+//import { makeStyles } from '@material-ui/core/styles';
 import { useDispatch } from 'react-redux';
 
 function BeerListPage({ prop }) {
@@ -79,11 +80,26 @@ function BeerListPage({ prop }) {
     const handleNext= () => {
         history.push('/beer-rating');
     }
+
+    const useStyles = makeStyles({
+        field: {
+            background: 'linear-gradient(45deg, #388e3c 30%, #99eedf 90%)',
+            borderRadius: 3,
+            border: 0,
+            color: 'white',
+            height: 48,
+            padding: '0 30px',
+            // boxShadow: '0 3px 5px 2px #ffffff',
+        }
+    });
+    const classes = useStyles();
         
 
     return (
         <div>
-            <h1>Select or Add a Brewery</h1>
+            {/* <h1>Select or Add a Brewery</h1> */}
+
+            <img src="images/brewery.jpeg" />
             {/* <h1>{d}</h1> */}
             
             <br /><br /><br /><br />
@@ -95,8 +111,8 @@ function BeerListPage({ prop }) {
                 name="brewery"
                 label="selectBrewery"
                 onChange={(e) => setSelectBrewery(e.target.value)}
-
                 value={selectBrewery}
+                
             > Select Brewery
                 <option value="" select>Select a Brewery</option>
                 {brewery.map((brew, i) => {
@@ -111,9 +127,12 @@ function BeerListPage({ prop }) {
                 variant="contained"
                 color="primary"
                 onClick={handleSelect}
+                className={classes.field}
             >
                 Select Brewery
             </Button>
+
+            {/* <img src="images/brewery.jpeg" /> */}
 
             <br />
             <br />
@@ -129,10 +148,14 @@ function BeerListPage({ prop }) {
                 variant="contained"
                 color="primary"
                 onClick={handleAdd}
+                className={classes.field}
             >
                 Add Brewery
             </Button>
+
+            {/* <img src="images/brewery.jpeg" /> */}
         </div>
     )
 }
+
 export default BeerListPage;
