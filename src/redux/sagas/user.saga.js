@@ -24,8 +24,22 @@ function* fetchUser() {
   }
 }
 
+function* editItem(action) {
+  try {
+    //PUT to api/shelf server
+    yield axios.put(`api/user/${action.payload}`);
+    yield put({
+      //Fetch from server
+      type: 'FETCH_USER'
+    })
+  } catch (error) {
+    console.log(error)
+  }
+}; 
+
 function* userSaga() {
   yield takeLatest('FETCH_USER', fetchUser);
+  yield takeLatest('EDIT', editItem)
 }
 
 export default userSaga;

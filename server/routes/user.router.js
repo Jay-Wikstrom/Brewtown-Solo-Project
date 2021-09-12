@@ -48,8 +48,6 @@ router.post('/logout', (req, res) => {
 });
 
 router.put('/:id', (req, res) => {
-  // endpoint functionality
-  //let id = [req.params.id];
   let sqlQuery = `
     UPDATE "user"
     SET "username" = $1

@@ -34,7 +34,6 @@ function BeerRatingPage() {
                 beer: beerInput,
                 type: typeInput,
                 rating: ratingInput,
-                //
                 notes: notesInput,
             }
             //ratings
