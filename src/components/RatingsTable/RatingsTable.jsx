@@ -35,9 +35,9 @@ function RatingsPage(){
             type: 'DELETE_RATING',
             payload: id
         })
-        dispatch({
-            type: 'SUBTRACT_BEER_COUNT'
-        })
+        // dispatch({
+        //     type: 'SUBTRACT_BEER_COUNT'
+        // })
     }
 
     const useStyles = makeStyles(theme => ({

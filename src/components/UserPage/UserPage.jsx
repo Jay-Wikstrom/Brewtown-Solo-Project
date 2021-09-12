@@ -24,7 +24,10 @@ function UserPage() {
     })
   }, [])
 
-  console.log('****************', ratings.length)
+  const beerCount = ratings.length
+  //const beerCount = 100
+  console.log('****************', beerCount)
+
 
   const useStyles = makeStyles(theme => ({
     table: {
@@ -51,6 +54,25 @@ function UserPage() {
       payload: id
     })
   }
+
+  const beerCounter = () => {
+    if (beerCount < 20) {
+      console.log('Bronze')
+      return <TableCell>Bronze</TableCell>
+    } else if (beerCount < 50) {
+      console.log('Silver')
+      return <TableCell>Silver</TableCell>
+    }
+    else if (beerCount < 100) {
+      console.log('Gold')
+      return <TableCell>Gold</TableCell>
+    }
+    else {
+      console.log('Platinum');
+      return <TableCell>Platinum</TableCell>
+    }
+  }
+  
 
   
   const toggleButtonClick = () => {
@@ -91,17 +113,17 @@ function UserPage() {
           
           <TableRow>
             <TableCell>Breweries Visited:</TableCell>
-            <TableCell>877</TableCell>
+            <TableCell>10 million</TableCell>
           </TableRow>
 
           <TableRow>
             <TableCell>Beers Rated:</TableCell>
-            <TableCell>{ratings.length}</TableCell>
+            <TableCell>{beerCount}</TableCell>
           </TableRow>
 
           <TableRow>
             <TableCell>Tier:</TableCell>
-            <TableCell>Platinum</TableCell>
+            {beerCounter()}
           </TableRow>
         </Table>
       </Paper>
