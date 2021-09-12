@@ -13,6 +13,7 @@ function UserPage() {
   const dispatch = useDispatch();
   const history = useHistory();
 
+  const [editUsername, setEditUsername] = useState('');
   const [buttonClick, setButtonClick] = useState(true);
 
   const useStyles = makeStyles(theme => ({
@@ -34,7 +35,12 @@ function UserPage() {
   }))
   const classes = useStyles();
 
-
+  const handleEdit = (id) => {
+    dispatch({
+      type: 'EDIT',
+      payload: id
+    })
+  }
 
   
   const toggleButtonClick = () => {
@@ -50,8 +56,11 @@ function UserPage() {
           <input 
             type="text"
             placeholder="edit username"
+            value={editUsername}
+            onChange={e => setEditUsername(e.target.value)}
+
           /> 
-          <button>Submit Changes</button>
+          <button onClick={() => handleEdit(editUsername)}>Submit Changes</button>
         </div>
       )
     }
