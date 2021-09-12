@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
@@ -10,12 +10,21 @@ import { Paper, TableBody, TableCell, TableSortLabel } from '@material-ui/core';
 function UserPage() {
   // this component doesn't do much to start, just renders some user reducer info to the DOM
   const user = useSelector((store) => store.user);
-  const beerCount = useSelector((store) => store.beerCountReducer);
+  const ratings = useSelector((store) => store.ratingsReducer);
   const dispatch = useDispatch();
   const history = useHistory();
 
   const [editUsername, setEditUsername] = useState('');
   const [buttonClick, setButtonClick] = useState(true);
+
+
+  useEffect(() => {
+    dispatch({
+      type: 'FETCH_RATINGS'
+    })
+  }, [])
+
+  console.log('****************', ratings.length)
 
   const useStyles = makeStyles(theme => ({
     table: {
@@ -68,10 +77,6 @@ function UserPage() {
   }
 
 
-
-
-
-
   return (
     <div className="container">
       <h2>Welcome, {user.username}!</h2>
@@ -91,7 +96,7 @@ function UserPage() {
 
           <TableRow>
             <TableCell>Beers Rated:</TableCell>
-            <TableCell>{beerCount}</TableCell>
+            <TableCell>{ratings.length}</TableCell>
           </TableRow>
 
           <TableRow>
