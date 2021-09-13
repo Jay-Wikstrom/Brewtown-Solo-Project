@@ -33,24 +33,19 @@ function BeerRatingPage() {
         } else if (typeInput === ''){
             alert('Please enter a beer type');
         } else {
-        dispatch({
-            type: 'ADD_BEER_RATING',
-            payload: {
-                userId: user.id,
-                breweryId: breweryReducer.id,
-                beer: beerInput,
-                type: typeInput,
-                rating: ratingInput,
-                notes: notesInput,
-            }
-            //ratings
-        })
+            dispatch({
+                type: 'ADD_BEER_RATING',
+                payload: {
+                    userId: user.id,
+                    breweryId: breweryReducer.id,
+                    beer: beerInput,
+                    type: typeInput,
+                    rating: ratingInput,
+                    notes: notesInput,
+                }
+            })
             history.push('/ratings');
-    }
-        // dispatch({
-        //     type: 'ADD_BEER_COUNT'
-        // })
-        
+        }
     }
 
     return (
