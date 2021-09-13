@@ -1,11 +1,14 @@
 const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
+const {
+    rejectUnauthenticated,
+} = require('../modules/authentication-middleware');
 
 /**
  * GET route template
  */
-router.get('/', (req, res) => {
+router.get('/', rejectUnauthenticated, (req, res) => {
     // GET route code here
     const sqlQuery = `
         SELECT "brewery".brewery, 
@@ -19,9 +22,11 @@ router.get('/', (req, res) => {
         JOIN "user"
             ON "ratings".user_id = "user".id
         JOIN "brewery"
-            ON "ratings".brewery_id = "brewery".id;
+            ON "ratings".brewery_id = "brewery".id
+        WHERE user_id = $1;
     `;
-    pool.query(sqlQuery)
+    let sqlParams = [req.user.id]
+    pool.query(sqlQuery, sqlParams)
         .then(result => {
             res.send(result.rows);
         })
@@ -31,7 +36,7 @@ router.get('/', (req, res) => {
         })
 });
 
-router.post('/', (req, res) => {
+router.post('/', rejectUnauthenticated, (req, res) => {
     const sqlQuery = `
         INSERT INTO "ratings" ("user_id", "brewery_id", "beer", "type", "rating", "notes")
         VALUES ($1, $2, $3, $4, $5, $6)
@@ -55,7 +60,7 @@ router.post('/', (req, res) => {
 
 });
 
-router.delete('/:id', (req, res) => {
+router.delete('/:id', rejectUnauthenticated, (req, res) => {
     // endpoint functionality
     let sqlQuery = `
     DELETE FROM "ratings"
