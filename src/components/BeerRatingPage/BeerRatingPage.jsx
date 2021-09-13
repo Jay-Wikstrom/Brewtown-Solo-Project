@@ -26,6 +26,13 @@ function BeerRatingPage() {
 
     const handleSubmit = () => {
         console.log('click');
+        if (beerInput === '') {
+            alert('Please enter a beer name');
+        } else if (ratingInput === '' || ratingInput > 5 || ratingInput < 1){
+            alert('Please enter a rating between 1-5');
+        } else if (typeInput === ''){
+            alert('Please enter a beer type');
+        } else {
         dispatch({
             type: 'ADD_BEER_RATING',
             payload: {
@@ -38,10 +45,12 @@ function BeerRatingPage() {
             }
             //ratings
         })
-        dispatch({
-            type: 'ADD_BEER_COUNT'
-        })
-        history.push('/ratings');
+            history.push('/ratings');
+    }
+        // dispatch({
+        //     type: 'ADD_BEER_COUNT'
+        // })
+        
     }
 
     return (
@@ -59,6 +68,7 @@ function BeerRatingPage() {
                     type='number'
                     placeholder='Rating'
                     variant="standard"
+                    InputProps={{ inputProps: { min: 1, max: 5 } }}
                     value={ratingInput}
                     onChange={e => setRatingsInput(e.target.value)}
                 />
