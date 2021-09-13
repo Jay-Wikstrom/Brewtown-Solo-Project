@@ -164,54 +164,6 @@ function UserPage() {
       <h3>Progress Bar will go here</h3>
       <h4>{nextTier()}</h4>
 
-      {/* <DataGridPro
-        columns={[
-          { field: 'id' },
-          { field: 'username', minWidth: 150 },
-          { field: 'age', resizable: false },
-        ]}
-        rows={rows}
-      /> */}
-
-
-
-
-      {/* <table>
-        <th>
-          
-          <tr>Username:</tr>
-          
-          <tr>Breweries Visited:</tr>
-          <tr>Beers Rated:</tr>
-          <tr>Tier:</tr>
-        </th>
-
-        <td>
-          
-          <tr>{user.username}</tr>
-          
-          <tr>2</tr>
-          <tr>2</tr>
-          <tr>Bronze</tr>
-        </td>
-        <td>
-          <tr><button>Edit</button></tr>
-        </td>
-      </table> */}
-
-
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-
-
-      
       {/* <p>Your ID is: {user.id}</p>
       <LogOutButton className="btn" /> */}
     </div>
