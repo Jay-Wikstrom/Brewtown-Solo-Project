@@ -47,7 +47,7 @@ router.post('/logout', (req, res) => {
   res.sendStatus(200);
 });
 
-router.put('/:id', (req, res) => {
+router.put('/:id', rejectUnauthenticated, (req, res) => {
   console.log('req.body is', req.body)
   let sqlQuery = `
     UPDATE "user"
