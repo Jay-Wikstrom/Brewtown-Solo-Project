@@ -26,8 +26,13 @@ function UserPage() {
     })
   }, [])
 
-  const beerCount = ratings.length
-  //const beerCount = 100
+  const beerCount = ratings.length;
+  const bronzeTier = 20;
+  const silverTier = 50;
+  const goldTier = 100;
+  const platinumTier = 101;
+  const bronze = 'Bronze'
+  //const beerCount = 12
   // console.log('****************', beerCount)
 
 
@@ -62,20 +67,33 @@ function UserPage() {
   }
 
   const beerCounter = () => {
-    if (beerCount < 20) {
+    if (beerCount < bronzeTier) {
       console.log('Bronze')
       return <TableCell>Bronze</TableCell>
-    } else if (beerCount < 50) {
+    } else if (beerCount < silverTier) {
       console.log('Silver')
       return <TableCell>Silver</TableCell>
     }
-    else if (beerCount < 100) {
+    else if (beerCount < goldTier) {
       console.log('Gold')
       return <TableCell>Gold</TableCell>
     }
     else {
       console.log('Platinum');
       return <TableCell>Platinum</TableCell>
+    }
+  }
+
+  const nextTier = () => {
+    if (beerCount < bronzeTier){
+      console.log(bronzeTier - beerCount)
+      return <h4>Rate {bronzeTier - beerCount} more beers to reach the next Silver Tier</h4>
+    } else if (beerCount < silverTier) {
+      console.log(silverTier - beerCount)
+      return <h4>Rate {silverTier - beerCount} more beers to reach the next Gold Tier</h4>
+    } else if (beerCount < goldTier) {
+      console.log(goldTier - beerCount)
+      return <h4>Rate {goldTier - beerCount} more beers to reach the next Platinum Tier</h4>
     }
   }
   
@@ -143,6 +161,8 @@ function UserPage() {
       </Button>
 
       {toggleButton()}
+      <h3>Progress Bar will go here</h3>
+      <h4>{nextTier()}</h4>
 
       {/* <DataGridPro
         columns={[
@@ -191,8 +211,7 @@ function UserPage() {
       <br />
 
 
-      <h3>Progress Bar will go here</h3>
-      <h4>Rate 18 more beers to reach the next Tier</h4>
+      
       {/* <p>Your ID is: {user.id}</p>
       <LogOutButton className="btn" /> */}
     </div>

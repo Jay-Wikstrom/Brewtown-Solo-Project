@@ -48,6 +48,14 @@ function BeerRatingPage() {
         }
     }
 
+    // const useStyles = makeStyles({
+    //     field: {
+    //         //TextField padding set to 10
+    //         padding: 
+    //     }
+    // })
+    // const classes = useStyles()
+
     return (
         <div>
             
@@ -67,6 +75,7 @@ function BeerRatingPage() {
                     type='number'
                     placeholder='Rating'
                     variant="standard"
+                    // className={classes.field}
                     InputProps={{ inputProps: { min: 1, max: 5 } }}
                     value={ratingInput}
                     onChange={e => setRatingsInput(e.target.value)}
