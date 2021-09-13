@@ -55,7 +55,11 @@ function BeerRatingPage() {
 
     return (
         <div>
+            
             <h1>{breweryReducer.brewery}</h1>
+            <br />
+            <img src="images/brewery.jpeg" />
+            
             <form onSubmit={handleSubmit}>
                 <TextField
                     type='text'
