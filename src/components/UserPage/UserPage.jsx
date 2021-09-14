@@ -39,6 +39,7 @@ function UserPage() {
   const goldProgress = (ratings.length  / goldTier) * 100;
   const platinumProgress = 100;
   const beerCount = ratings.length
+  const breweriesVisited = breweries.length
 
 
   const useStyles = makeStyles(theme => ({
@@ -202,7 +203,7 @@ function UserPage() {
           
           <TableRow>
             <TableCell>Breweries Visited:</TableCell>
-            <TableCell>10 million</TableCell>
+            <TableCell>{breweriesVisited}</TableCell>
           </TableRow>
 
           <TableRow>
