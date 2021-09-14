@@ -60,7 +60,7 @@ function UserPage() {
     },
     bronzeProgressDone: {
       height: 25,
-      backgroundColor: 'yellow',
+      backgroundColor: '#388e3c',
 
     },
     bronzeProgress: {
@@ -69,7 +69,7 @@ function UserPage() {
     },
     silverProgressDone: {
       height: 25,
-      backgroundColor: 'silver',
+      backgroundColor: '#388e3c',
       
     },
     silverProgress: {
@@ -78,7 +78,7 @@ function UserPage() {
     },
     goldProgressDone: {
       height: 25,
-      backgroundColor: 'orange',
+      backgroundColor: '#388e3c',
 
     },
     goldProgress: {
@@ -87,7 +87,7 @@ function UserPage() {
     },
     platinumProgressDone: {
       height: 25,
-      backgroundColor: 'purple',
+      backgroundColor: '#388e3c',
 
     },
     platinumProgress: {
