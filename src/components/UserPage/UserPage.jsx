@@ -5,6 +5,7 @@ import { useHistory } from 'react-router-dom';
 import { TableRow, TableHead, Table, Button, makeStyles } from "@material-ui/core";
 import { Paper, TableBody, TableCell, TableSortLabel } from '@material-ui/core';
 //import { DataGridPro } from '@mui/x-data-grid-pro';
+import './UserPage.css';
 
 
 function UserPage() {
@@ -31,7 +32,9 @@ function UserPage() {
   const silverTier = 50;
   const goldTier = 100;
   const platinumTier = 101;
-  const bronze = 'Bronze'
+  const bronzeProgress = (ratings.length  / bronzeTier) * 100;
+  console.log(bronzeProgress,'******')
+
   //const beerCount = 12
   // console.log('****************', beerCount)
 
@@ -50,7 +53,17 @@ function UserPage() {
       '& tr:hover': {
         backgroundColor: '#fffbf2',
         cursor: 'pointer'
-      }
+      },
+    },
+    progressDone: {
+      height: 25,
+      backgroundColor: 'silver',
+      
+    },
+    progress: {
+      height: 25,
+      backgroundColor: 'white',
+      
     }
   }))
   const classes = useStyles();
@@ -122,6 +135,31 @@ function UserPage() {
     }
   }
 
+  const progress = (done) => {
+    // const [style, setStyle] = useState({})
+
+    // setTimeout(() => {
+    //   const newStyle = {
+    //     opacity: 1,
+    //   }
+    //   setStyle(newStyle);
+    // }, 1000)
+
+    return (
+      <div className={classes.progress}>
+        <div className={classes.progressDone} style={{width: `${bronzeProgress}%`}}>10</div>
+      </div>
+    )
+  }
+
+  // const useStyles = makeStyles({
+  //       field: {
+  //           //TextField padding set to 10
+  //           padding: 
+  //       }
+  //   })
+  //   const classes = useStyles()
+
 
   return (
     <div className="container">
@@ -162,6 +200,7 @@ function UserPage() {
 
       {toggleButton()}
       <h3>Progress Bar will go here</h3>
+      <div>{progress()}</div>
       <h4>{nextTier()}</h4>
 
       {/* <p>Your ID is: {user.id}</p>
