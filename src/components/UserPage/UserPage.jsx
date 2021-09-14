@@ -11,6 +11,7 @@ function UserPage() {
   // this component doesn't do much to start, just renders some user reducer info to the DOM
   const user = useSelector((store) => store.user);
   const ratings = useSelector((store) => store.ratingsReducer);
+  const breweries = useSelector((store) => store.breweriesReducer);
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -24,6 +25,9 @@ function UserPage() {
     dispatch({
       type: 'FETCH_RATINGS'
     })
+    dispatch({
+      type: 'FETCH_BREWERIES'
+    })
   }, [])
 
   const bronzeTier = 20;
@@ -35,6 +39,7 @@ function UserPage() {
   const goldProgress = (ratings.length  / goldTier) * 100;
   const platinumProgress = 100;
   const beerCount = ratings.length
+  const breweriesVisited = breweries.length
 
 
   const useStyles = makeStyles(theme => ({
@@ -198,7 +203,7 @@ function UserPage() {
           
           <TableRow>
             <TableCell>Breweries Visited:</TableCell>
-            <TableCell>10 million</TableCell>
+            <TableCell>{breweriesVisited}</TableCell>
           </TableRow>
 
           <TableRow>
