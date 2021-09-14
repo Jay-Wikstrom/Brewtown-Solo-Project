@@ -227,7 +227,13 @@ function UserPage() {
       {toggleButton()}
       <br />
       <br />
+      <br />
+      <br />
       <h4>{nextTier()}</h4>
+      <br />
+      <br /><br />
+      <br /><br />
+      
     </div>
   );
 }
