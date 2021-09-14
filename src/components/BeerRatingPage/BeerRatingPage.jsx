@@ -24,6 +24,8 @@ function BeerRatingPage() {
         })
     },[])
 
+    const notesLimit = notesInput.length - 500;
+
     const handleSubmit = () => {
         console.log('click');
         if (beerInput === '') {
@@ -32,7 +34,10 @@ function BeerRatingPage() {
             alert('Please enter a rating between 1-5');
         } else if (typeInput === ''){
             alert('Please enter a beer type');
-        } else {
+        } else if (notesInput.length > 500){
+            alert(`Please delete ${notesLimit} characters inside of your notes text box`);
+        }
+         else {
             dispatch({
                 type: 'ADD_BEER_RATING',
                 payload: {

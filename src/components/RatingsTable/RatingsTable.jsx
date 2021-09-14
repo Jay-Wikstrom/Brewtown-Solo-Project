@@ -53,6 +53,7 @@ function RatingsPage(){
     }))
     const classes = useStyles();
     
+    
 
     const handleSort = cellId => {
         const isAsc = orderBy === cellId && order === "asc";
