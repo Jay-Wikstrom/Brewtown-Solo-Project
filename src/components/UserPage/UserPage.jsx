@@ -27,15 +27,17 @@ function UserPage() {
     })
   }, [])
 
-  const beerCount = ratings.length;
+  //const beerCount = ratings.length;
   const bronzeTier = 20;
   const silverTier = 50;
   const goldTier = 100;
   const platinumTier = 101;
   const bronzeProgress = (ratings.length  / bronzeTier) * 100;
+  const silverProgress = (ratings.length / silverTier) * 100;
   console.log(bronzeProgress,'******')
+  console.log(silverProgress,'*****')
 
-  //const beerCount = 12
+  const beerCount = 20
   // console.log('****************', beerCount)
 
 
@@ -55,16 +57,24 @@ function UserPage() {
         cursor: 'pointer'
       },
     },
-    progressDone: {
+    bronzeProgressDone: {
+      height: 25,
+      backgroundColor: 'yellow',
+
+    },
+    bronzeProgress: {
+      height: 25,
+      backgroundColor: 'white',
+    },
+    silverProgressDone: {
       height: 25,
       backgroundColor: 'silver',
       
     },
-    progress: {
+    silverProgress: {
       height: 25,
       backgroundColor: 'white',
-      
-    }
+    },
   }))
   const classes = useStyles();
 
@@ -100,10 +110,22 @@ function UserPage() {
   const nextTier = () => {
     if (beerCount < bronzeTier){
       console.log(bronzeTier - beerCount)
-      return <h4>Rate {bronzeTier - beerCount} more beers to reach the next Silver Tier</h4>
+      return (
+        <div className={classes.bronzeProgress}>
+          <div className={classes.bronzeProgressDone} style={{ width: `${bronzeProgress}%` }}></div>
+          <h4>Rate {bronzeTier - beerCount} more beers to reach the next Silver Tier</h4>
+        </div>
+      )
+      //return <h4>Rate {bronzeTier - beerCount} more beers to reach the next Silver Tier</h4>
     } else if (beerCount < silverTier) {
       console.log(silverTier - beerCount)
-      return <h4>Rate {silverTier - beerCount} more beers to reach the next Gold Tier</h4>
+      return (
+        <div className={classes.silverProgress}>
+          <div className={classes.silverProgressDone} style={{ width: `${silverProgress}%` }}></div>
+          <h4>Rate {silverTier - beerCount} more beers to reach the next Gold Tier</h4>
+        </div>
+      )
+      //return <h4>Rate {silverTier - beerCount} more beers to reach the next Gold Tier</h4>
     } else if (beerCount < goldTier) {
       console.log(goldTier - beerCount)
       return <h4>Rate {goldTier - beerCount} more beers to reach the next Platinum Tier</h4>
@@ -146,9 +168,10 @@ function UserPage() {
     // }, 1000)
 
     return (
-      <div className={classes.progress}>
-        <div className={classes.progressDone} style={{width: `${bronzeProgress}%`}}>10</div>
-      </div>
+      <h1>Test</h1>
+      // <div className={classes.silverProgress}>
+      //   <div className={classes.silverProgressDone} style={{ width: `${silverProgress}%` }}></div>
+      // </div>
     )
   }
 
