@@ -7,10 +7,6 @@ import { TableRow, TableHead, Table, Button, makeStyles } from "@material-ui/cor
 function RatingsPage(){
     const dispatch = useDispatch();
     const ratings = useSelector(store => store.ratingsReducer);
-
-    const pages = [5, 10, 25]
-    const [page, setPages] = useState(0);
-    const [rowsPerPage, setRowsPerPage] = useState(5)
     const [order, setOrder] = useState();
     const [orderBy, setOrderBy] = useState()
 
@@ -96,10 +92,8 @@ function RatingsPage(){
 
     function formatDate(date){
        let d = new Date(date)
-       console.log('****************************',d.toLocaleDateString())
        return d.toLocaleDateString()
     }
-    
 
     return (
         <div>
