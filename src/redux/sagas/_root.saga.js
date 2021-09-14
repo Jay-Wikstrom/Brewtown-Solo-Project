@@ -5,6 +5,7 @@ import ratingsSaga from './ratings.saga';
 //import brewerySaga from './brewery.saga';
 import registrationSaga from './registration.saga';
 import userSaga from './user.saga';
+import breweriesSaga from './breweries.saga';
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -19,6 +20,7 @@ export default function* rootSaga() {
     registrationSaga(),
     userSaga(),
     brewerySaga(),
-    ratingsSaga()
+    ratingsSaga(),
+    breweriesSaga()
   ]);
 }

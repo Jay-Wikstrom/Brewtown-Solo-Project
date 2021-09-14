@@ -11,6 +11,7 @@ function UserPage() {
   // this component doesn't do much to start, just renders some user reducer info to the DOM
   const user = useSelector((store) => store.user);
   const ratings = useSelector((store) => store.ratingsReducer);
+  const breweries = useSelector((store) => store.breweriesReducer);
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -23,6 +24,9 @@ function UserPage() {
   useEffect(() => {
     dispatch({
       type: 'FETCH_RATINGS'
+    })
+    dispatch({
+      type: 'FETCH_BREWERIES'
     })
   }, [])
 

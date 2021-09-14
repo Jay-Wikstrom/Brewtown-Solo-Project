@@ -5,8 +5,8 @@ const {
     rejectUnauthenticated,
 } = require('../modules/authentication-middleware');
 
-router.get('/', rejectUnauthenticated, (req, res) => {
-    console.log('**********',req.query.brewery);
+router.get('/', (req, res) => {
+    //console.log('**********',req.query.brewery);
     //const id = req.params.id;
     let sqlQuery = `
         SELECT * FROM "brewery"
@@ -14,7 +14,7 @@ router.get('/', rejectUnauthenticated, (req, res) => {
   `;
     pool.query(sqlQuery, [req.query.brewery])
         .then(result => {
-            console.log('GET data', result.rows[0])
+            //console.log('GET data', result.rows[0])
             res.send(result.rows[0])
         }).catch(error => {
             console.log('GET route error', error)
@@ -22,7 +22,7 @@ router.get('/', rejectUnauthenticated, (req, res) => {
         })
 });
 
-router.post('/', rejectUnauthenticated, (req, res) => {
+router.post('/', (req, res) => {
     const selectQuery = `
         SELECT *
         FROM "brewery"
