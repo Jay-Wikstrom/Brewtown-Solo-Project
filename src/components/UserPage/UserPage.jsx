@@ -191,7 +191,7 @@ function UserPage() {
 
   return (
     <div className="container">
-      <h2>Welcome, {user.username}!</h2>
+      <center><h2>Welcome, {user.username}!</h2></center>
 
       <Paper>
         <Table className={classes.table}>
@@ -199,7 +199,6 @@ function UserPage() {
             <TableCell>Username</TableCell>
             <TableCell>{user.username}</TableCell>       
           </TableRow>
-
           
           <TableRow>
             <TableCell>Breweries Visited:</TableCell>
@@ -221,7 +220,6 @@ function UserPage() {
       <Button
         variant="contained"
         onClick={toggleButtonClick}
-        //color="secondary"
       >
         Edit User Data
       </Button>
@@ -230,9 +228,6 @@ function UserPage() {
       <br />
       <br />
       <h4>{nextTier()}</h4>
-
-      {/* <p>Your ID is: {user.id}</p>
-      <LogOutButton className="btn" /> */}
     </div>
   );
 }
