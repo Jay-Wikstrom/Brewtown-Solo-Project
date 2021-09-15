@@ -13,8 +13,10 @@ function BeerRatingPage() {
     const [ratingInput, setRatingsInput] = useState('');
     const [typeInput, setTypeInput] = useState('');
     const [notesInput, setNotesInput] = useState('');
-    //
     
+    const notesLimit = notesInput.length - 500;
+    const beerLimit = beerInput.length - 80;
+    const typeLimit = notesInput.length - 25;
 
     const dispatch = useDispatch();
 
@@ -24,7 +26,7 @@ function BeerRatingPage() {
         })
     },[])
 
-    const notesLimit = notesInput.length - 500;
+   
 
     const handleSubmit = () => {
         console.log('click');
@@ -36,6 +38,12 @@ function BeerRatingPage() {
             alert('Please enter a beer type');
         } else if (notesInput.length > 500){
             alert(`Please delete ${notesLimit} characters inside of your notes text box`);
+        }
+        else if (beerInput.length > 80) {
+            alert(`Please delete ${beerLimit} characters inside of your beer text box`);
+        }
+        else if (typeInput.length > 25) {
+            alert(`Please delete ${typeLimit} characters inside of your type text box`);
         }
          else {
             dispatch({
