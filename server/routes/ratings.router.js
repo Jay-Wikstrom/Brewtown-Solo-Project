@@ -23,7 +23,9 @@ router.get('/', rejectUnauthenticated, (req, res) => {
             ON "ratings".user_id = "user".id
         JOIN "brewery"
             ON "ratings".brewery_id = "brewery".id
-        WHERE user_id = $1;
+        WHERE user_id = $1
+        ORDER BY "id" DESC;
+        
     `;
     let sqlParams = [req.user.id]
     pool.query(sqlQuery, sqlParams)
