@@ -53,17 +53,21 @@ function BeerListPage({ prop }) {
         })
     }
 
-    // const d = new Date();
-    // console.log(d)
+    const addBreweryLimit = addBrewery.length - 80;
 
     const handleAdd = () => {
-        console.log('Handle Submit');
-        console.log(addBrewery)
-        history.push('/beer-rating');
-        dispatch({
-            type: 'ADD_BREWERY',
-            payload: {brewery: addBrewery}
-        })
+        if (addBrewery.length > 80) {
+            alert(`Please delete ${addBreweryLimit} characters inside of your beer add text box`);
+        } else{
+            console.log('Handle Submit');
+            console.log(addBrewery)
+            dispatch({
+                type: 'ADD_BREWERY',
+                payload: {brewery: addBrewery}
+            })
+            history.push('/beer-rating');
+        }
+        
     }
 
     const handleSelect = () => {
@@ -74,10 +78,6 @@ function BeerListPage({ prop }) {
             type: 'SELECT_BREWERY',
             payload: { brewery: selectBrewery }
         })
-        history.push('/beer-rating');
-    }
-
-    const handleNext= () => {
         history.push('/beer-rating');
     }
 
