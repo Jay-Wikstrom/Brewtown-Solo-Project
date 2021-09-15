@@ -98,14 +98,21 @@ function BeerListPage({ prop }) {
     return (
         <div>
             {/* <h1>Select or Add a Brewery</h1> */}
-
-            <img src="images/brewery.jpeg" />
+            <Grid>
+            <center>
+                <h2>Select or Add your own Brewery</h2>
+                <br />
+                <img src="images/brewery.jpeg" /></center>
             {/* <h1>{d}</h1> */}
 
-            <br /><br /><br /><br />
+            
+            <br />
+            <br />
+            
             {/* <FormControl variant="outlined" className={classes.input}>
             <InputLabel id="selectBrewery">Select a Brewery</InputLabel> */}
             {/* <label for="brewery">Select Brewery</label> */}
+            <center><form>
             <select
                 id="brewery"
                 name="brewery"
@@ -134,9 +141,7 @@ function BeerListPage({ prop }) {
 
             {/* <img src="images/brewery.jpeg" /> */}
 
-            <br />
-            <br />
-            <br />
+            
 
             <input
                 type="text"
@@ -152,6 +157,8 @@ function BeerListPage({ prop }) {
             >
                 Add Brewery
             </Button>
+            </form></center>
+            </Grid>
 
             {/* <img src="images/brewery.jpeg" /> */}
         </div>
