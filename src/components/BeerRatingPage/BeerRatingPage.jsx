@@ -25,7 +25,6 @@ function BeerRatingPage() {
             type: 'FETCH_BREWERY',
         })
     },[])
-
    
 
     const handleSubmit = () => {
@@ -60,14 +59,6 @@ function BeerRatingPage() {
             history.push('/ratings');
         }
     }
-
-    // const useStyles = makeStyles({
-    //     field: {
-    //         //TextField padding set to 10
-    //         padding: 
-    //     }
-    // })
-    // const classes = useStyles()
 
     return (
         <div>
