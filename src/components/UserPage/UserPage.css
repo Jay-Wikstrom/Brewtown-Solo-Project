@@ -1,16 +1,17 @@
-.progress {
-    /* height: 600px; */
-    /* width: 300px; */
+/* .progress {
+    height: 600px;
+    width: 300px;
     background-color:chartreuse; 
 } 
 
 .progressDone {
-    /* height: 600px; */
+    height: 600px;
     background-color: coral;
-    /* width: 100px; */
-}
+    width: 100px;
+} */
 
-.stack-top{
-        z-index: 2;
-        margin: 20px; /* for demo purpose  */
-    }
+/* .welcome{
+    background-color: white;
+    padding: 30px;
+    color:rgb(255, 255, 255);
+} */
