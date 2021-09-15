@@ -130,9 +130,11 @@ function UserPage() {
     if (beerCount < bronzeTier){
       console.log(bronzeTier - beerCount)
       return (
+        <div>
         <div className={classes.bronzeProgress}>
           <div className={classes.bronzeProgressDone} style={{ width: `${bronzeProgress}%` }}></div>
-          <h4>Rate {bronzeTier - beerCount} more beers to reach the next Silver Tier</h4>
+          <center><h4>Rate {bronzeTier - beerCount} more beers to reach the next Silver Tier</h4></center>
+        </div>
         </div>
       )
 
@@ -141,7 +143,7 @@ function UserPage() {
       return (
         <div className={classes.silverProgress}>
           <div className={classes.silverProgressDone} style={{ width: `${silverProgress}%` }}></div>
-          <h4>Rate {silverTier - beerCount} more beers to reach the next Gold Tier</h4>
+          <center><h4>Rate {silverTier - beerCount} more beers to reach the next Gold Tier</h4></center>
         </div>
       )
 
@@ -150,7 +152,7 @@ function UserPage() {
       return (
         <div className={classes.goldProgress}>
           <div className={classes.goldProgressDone} style={{ width: `${goldProgress}%` }}></div>
-          <h4>Rate {goldTier - beerCount} more beers to reach the next Platinum Tier</h4>
+          <center><h4>Rate {goldTier - beerCount} more beers to reach the next Platinum Tier</h4></center>
         </div>
       )
     }
@@ -159,6 +161,7 @@ function UserPage() {
       return (
         <div className={classes.platinumProgress}>
           <div className={classes.platinumProgressDone} style={{ width: `${platinumProgress}%` }}></div>
+          <center><h4>You reached the platinum tier!</h4></center>
         </div>
       )
     }
@@ -221,7 +224,7 @@ function UserPage() {
         variant="contained"
         onClick={toggleButtonClick}
       >
-        Edit User Data
+        Edit Username
       </Button>
 
       {toggleButton()}

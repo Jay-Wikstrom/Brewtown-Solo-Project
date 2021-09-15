@@ -47,7 +47,7 @@ function BeerListPage({ prop }) {
         fetchBrewery()
     }, [])
 
-    function fetchBrewery(){
+    function fetchBrewery() {
         dispatch({
             type: 'FETCH_BREWERY',
         })
@@ -58,16 +58,16 @@ function BeerListPage({ prop }) {
     const handleAdd = () => {
         if (addBrewery.length > 80) {
             alert(`Please delete ${addBreweryLimit} characters inside of your beer add text box`);
-        } else{
+        } else {
             console.log('Handle Submit');
             console.log(addBrewery)
             dispatch({
                 type: 'ADD_BREWERY',
-                payload: {brewery: addBrewery}
+                payload: { brewery: addBrewery }
             })
             history.push('/beer-rating');
         }
-        
+
     }
 
     const handleSelect = () => {
@@ -93,7 +93,7 @@ function BeerListPage({ prop }) {
         }
     });
     const classes = useStyles();
-        
+
 
     return (
         <div>
@@ -101,7 +101,7 @@ function BeerListPage({ prop }) {
 
             <img src="images/brewery.jpeg" />
             {/* <h1>{d}</h1> */}
-            
+
             <br /><br /><br /><br />
             {/* <FormControl variant="outlined" className={classes.input}>
             <InputLabel id="selectBrewery">Select a Brewery</InputLabel> */}
@@ -112,7 +112,7 @@ function BeerListPage({ prop }) {
                 label="selectBrewery"
                 onChange={(e) => setSelectBrewery(e.target.value)}
                 value={selectBrewery}
-                
+
             > Select Brewery
                 <option value="" select>Select a Brewery</option>
                 {brewery.map((brew, i) => {
@@ -144,7 +144,7 @@ function BeerListPage({ prop }) {
                 onChange={(e) => setAddBrewery(e.target.value)}
                 value={addBrewery}
             />
-            <Button 
+            <Button
                 variant="contained"
                 color="primary"
                 onClick={handleAdd}
