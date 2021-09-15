@@ -47,6 +47,8 @@ router.post('/logout', (req, res) => {
   res.sendStatus(200);
 });
 
+
+//Update the username in the database
 router.put('/:id', rejectUnauthenticated, (req, res) => {
   console.log('req.body is', req.body)
   let sqlQuery = `

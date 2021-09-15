@@ -1,12 +1,9 @@
 const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
-// const {
-//     rejectUnauthenticated,
-// } = require('../modules/authentication-middleware');
 
+//Get list of just the breweries from the ratings table by user id
 router.get('/', (req, res) => {
-    
     let sqlParams = [req.user.id]
     let sqlQuery = `
         SELECT "brewery".brewery

@@ -5,11 +5,9 @@ const {
     rejectUnauthenticated,
 } = require('../modules/authentication-middleware');
 
-/**
- * GET route template
- */
+//Join brewery and user table with ratings table
+//Get the ratings table from the database
 router.get('/', rejectUnauthenticated, (req, res) => {
-    // GET route code here
     const sqlQuery = `
         SELECT "brewery".brewery, 
         "ratings".id,
@@ -38,6 +36,7 @@ router.get('/', rejectUnauthenticated, (req, res) => {
         })
 });
 
+//Post ratings from user inputs into the database
 router.post('/', rejectUnauthenticated, (req, res) => {
     const sqlQuery = `
         INSERT INTO "ratings" ("user_id", "brewery_id", "beer", "type", "rating", "notes")
@@ -59,9 +58,9 @@ router.post('/', rejectUnauthenticated, (req, res) => {
             console.log('POST route error', error)
             dbRes.sendStatus(500)
         })
-
 });
 
+//Delete row from the database
 router.delete('/:id', rejectUnauthenticated, (req, res) => {
     // endpoint functionality
     let sqlQuery = `

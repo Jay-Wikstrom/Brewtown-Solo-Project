@@ -1,20 +1,15 @@
 const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
-const {
-    rejectUnauthenticated,
-} = require('../modules/authentication-middleware');
 
+//Get the brewery select from the database
 router.get('/', (req, res) => {
-    //console.log('**********',req.query.brewery);
-    //const id = req.params.id;
     let sqlQuery = `
         SELECT * FROM "brewery"
         WHERE "brewery"= $1;
   `;
     pool.query(sqlQuery, [req.query.brewery])
         .then(result => {
-            //console.log('GET data', result.rows[0])
             res.send(result.rows[0])
         }).catch(error => {
             console.log('GET route error', error)
@@ -22,6 +17,7 @@ router.get('/', (req, res) => {
         })
 });
 
+//Post the selected brewery to the database if the brewery doesn't already exist.
 router.post('/', (req, res) => {
     const selectQuery = `
         SELECT *
