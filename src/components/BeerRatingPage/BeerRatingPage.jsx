@@ -59,27 +59,47 @@ function BeerRatingPage() {
             history.push('/ratings');
         }
     }
+    const useStyles = makeStyles(theme => ({
+        root: {
+            '& .MuiFormControl-root': {
+                width: '95%',
+                margin:theme.spacing(1)
+            }
+        },
+        pageContent: {
+            margin: theme.spacing(5),
+            padding: theme.spacing(3)
+        },
+        btn: {
+            background: 'linear-gradient(45deg, #388e3c 30%, #99eedf 90%)',
+            borderRadius: 3,
+            border: 0,
+            color: 'white',
+            height: 48,
+            padding: '0 30px',
+        }
+    }))
+    const classes = useStyles();
 
     return (
         <div>
             
-            <h1>{breweryReducer.brewery}</h1>
+            <center><h1>{breweryReducer.brewery}</h1></center>
             <br />
-            <img src="images/brewery.jpeg" />
-            
-            <form onSubmit={handleSubmit}>
+            <center><img src="images/brewery.jpeg" /></center>
+            <Paper className={classes.pageContent}>
+            <form className={classes.root} onSubmit={handleSubmit}>
                 <TextField
                     type='text'
                     placeholder='Beer'
-                    variant="standard"
+                    variant="outlined"
                     value={beerInput}
                     onChange={e => setBeerInput(e.target.value)}
                 />
                 <TextField
                     type='number'
                     placeholder='Rating'
-                    variant="standard"
-                    // className={classes.field}
+                    variant="outlined"
                     InputProps={{ inputProps: { min: 1, max: 5 } }}
                     value={ratingInput}
                     onChange={e => setRatingsInput(e.target.value)}
@@ -87,25 +107,28 @@ function BeerRatingPage() {
                 <TextField
                     type='text'
                     placeholder='Type'
-                    variant="standard"
+                    variant="outlined"
                     value={typeInput}
                     onChange={e => setTypeInput(e.target.value)}
                 />
                 <TextField
                     type='text'
                     placeholder='Notes'
-                    variant="standard"
+                    variant="outlined"
                     value={notesInput}
                     onChange={e => setNotesInput(e.target.value)}
                 />
-                <Button
+                <br />
+                <center><Button
+                    className={classes.btn}
                     variant="contained"
                     color="primary"
                     onClick={handleSubmit}
                 >
                     Submit
-                </Button>
+                </Button></center>
             </form>
+        </Paper>
         </div>
     )
 }
