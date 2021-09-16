@@ -98,7 +98,7 @@ function RatingsPage(){
 
     return (
         <div>
-            <h1>Brews Rated</h1>
+            <center><h1>Brews Rated</h1></center>
             <Paper>
                 <Table className={classes.table}>
                     <TableHead>
