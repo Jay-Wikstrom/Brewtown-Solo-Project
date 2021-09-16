@@ -61,16 +61,19 @@ function UserPage() {
     bronzeProgressDone: {
       height: 25,
       backgroundColor: '#388e3c',
-
+      border: 0,
+      borderRadius: 10,
     },
     bronzeProgress: {
       height: 25,
       backgroundColor: 'white',
+      border: 0,
+      borderRadius: 10,
+      boxShadow: '0 3px 5px 2px rgba(56, 142, 60, .3)',
     },
     silverProgressDone: {
       height: 25,
       backgroundColor: '#388e3c',
-      
     },
     silverProgress: {
       height: 25,
@@ -79,7 +82,6 @@ function UserPage() {
     goldProgressDone: {
       height: 25,
       backgroundColor: '#388e3c',
-
     },
     goldProgress: {
       height: 25,
