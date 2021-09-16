@@ -1,7 +1,7 @@
 import { useHistory } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { TextField, Container, Select, Button, Grid, InputLabel, FormControl, makeStyles } from '@material-ui/core';
+import { TextField, Container, Select, Button, Grid, InputLabel, FormControl, makeStyles, Paper } from '@material-ui/core';
 import { useDispatch } from 'react-redux';
 
 function BeerListPage({ prop }) {
@@ -56,7 +56,10 @@ function BeerListPage({ prop }) {
     const handleAdd = () => {
         if (addBrewery.length > 80) {
             alert(`Please delete ${addBreweryLimit} characters inside of your beer add text box`);
-        } else {
+        } else if (addBrewery === ''){
+            alert('You must enter in a brewery name to add a brewery')
+        }
+         else {
             dispatch({
                 type: 'ADD_BREWERY',
                 payload: { brewery: addBrewery }
@@ -73,7 +76,7 @@ function BeerListPage({ prop }) {
         history.push('/beer-rating');
     }
 
-    const useStyles = makeStyles({
+    const useStyles = makeStyles(theme => ({
         field: {
             background: 'linear-gradient(45deg, #388e3c 30%, #99eedf 90%)',
             borderRadius: 3,
@@ -81,64 +84,80 @@ function BeerListPage({ prop }) {
             color: 'white',
             height: 48,
             padding: '0 30px',
-        }
-    });
+        }, 
+        form: {
+            '& .MuiFormControl-root': {
+                width: '95%',
+                margin: theme.spacing(1)
+            }
+        },
+        pageContent: {
+            width: '75%',
+            margin: theme.spacing(1),
+            padding: theme.spacing(3)
+        },
+    }))
     const classes = useStyles();
 
 
     return (
         <div>
-            <Grid>
-                <center>
-                    <h2>Select or Add your own Brewery</h2>
-                    <br />
-                    <img src="images/brewery.jpeg" /></center>
-
+            
+            <center>
+                <h2>Select or Add your own Brewery</h2>
                 <br />
-                <br />
-                
-                <center>
-                <form>
-                    <select
-                        id="brewery"
-                        name="brewery"
-                        label="selectBrewery"
-                        onChange={(e) => setSelectBrewery(e.target.value)}
-                        value={selectBrewery}
+                <img src="images/brewery.jpeg" /></center>
 
-                    > Select Brewery
-                        <option value="" select>Select a Brewery</option>
-                        {brewery.map((brew, i) => {
-                            return <option key={i} value={brew.id}>{brew.name}</option>
-                        })}
-                    </select>
+            <br />
+            <br />
+            
+            
+            <center>
+                <form className={classes.form}>
+                    <Paper className={classes.pageContent}>
+                            <select
+                                id="brewery"
+                                name="brewery"
+                                label="selectBrewery"
+                                onChange={(e) => setSelectBrewery(e.target.value)}
+                                value={selectBrewery}
 
-                    <Button
-                        variant="contained"
-                        color="primary"
-                        onClick={handleSelect}
-                        className={classes.field}
-                    >
-                        Select Brewery
-                    </Button>
+                            > Select Brewery
+                                <option value="" select>Select a Brewery</option>
+                                {brewery.map((brew, i) => {
+                                    return <option key={i} value={brew.id}>{brew.name}</option>
+                                })}
+                            </select>
 
-                    <input
-                        type="text"
-                        placeholder="Add Your Own Brewery"
-                        onChange={(e) => setAddBrewery(e.target.value)}
-                        value={addBrewery}
-                    />
-                    <Button
-                        variant="contained"
-                        color="primary"
-                        onClick={handleAdd}
-                        className={classes.field}
-                    >
-                        Add Brewery
-                    </Button>
+                            <Button
+                                variant="contained"
+                                color="primary"
+                                onClick={handleSelect}
+                                className={classes.field}
+                            >
+                                Select Brewery
+                            </Button>
+                    </Paper>
+
+
+                    <Paper className={classes.pageContent}>
+                        <input
+                            type="text"
+                            placeholder="Add Your Own Brewery"
+                            onChange={(e) => setAddBrewery(e.target.value)}
+                            value={addBrewery}
+                        />
+                        <Button
+                            variant="contained"
+                            color="primary"
+                            onClick={handleAdd}
+                            className={classes.field}
+                        >
+                            Add Brewery
+                        </Button>
+                    </Paper>
                 </form>
-                </center>
-            </Grid>
+            </center>
         </div>
     )
 }
