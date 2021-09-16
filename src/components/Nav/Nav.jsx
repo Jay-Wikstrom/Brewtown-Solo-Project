@@ -33,7 +33,7 @@ function Nav() {
             </Link>
 
             <Link className="navLink" to="/beer-list">
-              Beer List
+              Brewery List
             </Link>
 
             <LogOutButton className="navLink" />
