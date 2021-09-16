@@ -196,7 +196,10 @@ function UserPage() {
 
   return (
     <div className="container">
-      <center><h2 class="welcome">Welcome, {user.username}!</h2></center>
+      <center>
+        <h2 class="welcome">Welcome, {user.username}! </h2>
+        <img src="images/Jay.jpg" width="72px" height="138" />
+      </center>
 
       <Paper>
         <Table className={classes.table}>
