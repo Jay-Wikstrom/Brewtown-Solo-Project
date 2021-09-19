@@ -73,11 +73,15 @@ function UserPage() {
     },
     silverProgressDone: {
       height: 25,
-      backgroundColor: '#388e3c',
+      backgroundColor: '#FFD700',
+      border: 0,
+      borderRadius: 10,
     },
     silverProgress: {
       height: 25,
       backgroundColor: 'white',
+      border: 0,
+      borderRadius: 10,
     },
     goldProgressDone: {
       height: 25,
