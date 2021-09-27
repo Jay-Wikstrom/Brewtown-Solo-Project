@@ -14,7 +14,6 @@ CREATE TABLE "user" (
 CREATE TABLE "brewery" (
 	"id" SERIAL PRIMARY KEY,
 	"brewery" VARCHAR(80),
-	"location_api" VARCHAR(256)
 );
 
 CREATE TABLE "ratings" (
