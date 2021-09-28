@@ -1,33 +1,40 @@
 import { useHistory } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { TextField, Container, Select, Button, Grid, InputLabel, FormControl, makeStyles, Paper } from '@material-ui/core';
+import { Button, makeStyles, Paper } from '@material-ui/core';
 import { useDispatch } from 'react-redux';
 
 function BeerListPage({ prop }) {
     const history = useHistory();
     const dispatch = useDispatch();
 
+    //State for selecting and adding brewery
     const [brewery, setBrewery] = useState([]);
     const [selectBrewery, setSelectBrewery] = useState('');
     const [addBrewery, setAddBrewery] = useState('');
+    //Limit for making sure the user doesn't go over the VARCHAR in brewery DB.
     const addBreweryLimit = addBrewery.length - 80;
 
     useEffect(() => {
+        //Grab user location data if enabled
         if ('geolocation' in navigator) {
             console.log('geolocation available')
             navigator.geolocation.getCurrentPosition(position => {
 
+                //User latitude and longitude
                 const lat = position.coords.latitude;
                 const lon = position.coords.longitude;
 
+                //Convert latitude and longitude to string for brewery api
                 let latitude = String(lat);
                 let longitude = String(lon);
 
+                //Grab 20 breweries from a list of breweries near the user with a limit of 20.
                 axios({
                     method: 'GET',
                     url: 'https://api.openbrewerydb.org/breweries',
                     params: {
+                        //Plug in user latitude and longitude from geolocation api
                         by_dist: `${latitude},${longitude}`
                     }
 
@@ -35,8 +42,6 @@ function BeerListPage({ prop }) {
                     const newResult = response.data.map(d => ({
                         name: d.name
                     }))
-                    console.log(newResult);
-                    console.log('axios response', response.data);
                     setBrewery(newResult);
                 })
             })
@@ -53,6 +58,7 @@ function BeerListPage({ prop }) {
         })
     }
 
+    //Add the brewery from user input
     const handleAdd = () => {
         if (addBrewery.length > 80) {
             alert(`Please delete ${addBreweryLimit} characters inside of your beer add text box`);
@@ -68,6 +74,7 @@ function BeerListPage({ prop }) {
         }
     }
 
+    //Select brewery 
     const handleSelect = () => {
         dispatch({
             type: 'SELECT_BREWERY',

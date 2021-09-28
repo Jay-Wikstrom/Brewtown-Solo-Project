@@ -5,15 +5,18 @@ import { Button, Container, TextField, Paper, Grid, makeStyles } from '@material
 import { useState } from 'react';
 
 function BeerRatingPage() {
+    //Grab brewery the user selected on the previous page from redux store
     const breweryReducer = useSelector(store => store.breweryReducer);
     const user = useSelector(store => store.user);
     const history = useHistory();
 
+    //State for user inputs of beer, rating, type, and notes
     const [beerInput, setBeerInput] = useState('');
     const [ratingInput, setRatingsInput] = useState('');
     const [typeInput, setTypeInput] = useState('');
     const [notesInput, setNotesInput] = useState('');
     
+    //Limit the form inputs so the user doesn't go over the VARCHAR in DB
     const notesLimit = notesInput.length - 500;
     const beerLimit = beerInput.length - 80;
     const typeLimit = notesInput.length - 25;
@@ -27,6 +30,7 @@ function BeerRatingPage() {
     },[])
    
 
+    //Send the data to Saga if the user fills in inputs with correct data
     const handleSubmit = () => {
         console.log('click');
         if (beerInput === '') {

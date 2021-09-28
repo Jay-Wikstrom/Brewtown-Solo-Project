@@ -6,10 +6,12 @@ import { TableRow, TableHead, Table, Button, makeStyles } from "@material-ui/cor
 
 function RatingsPage(){
     const dispatch = useDispatch();
+    //Grab ratings from redux store
     const ratings = useSelector(store => store.ratingsReducer);
     const [order, setOrder] = useState();
     const [orderBy, setOrderBy] = useState()
 
+    //Ratings table headings
     const headCells = [
         { id: 'brewery', label: 'Brewery' },
         { id: 'beer', label: 'Beer' },
@@ -25,6 +27,7 @@ function RatingsPage(){
         })
     }, [])
 
+    //Delete row from ratings table 
     const handleDelete = (id) => {
         console.log(id);
         dispatch({
