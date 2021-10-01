@@ -9,12 +9,6 @@ https://user-images.githubusercontent.com/82717484/135664177-89b8cadf-b7b7-48a4-
 
 
 
-![Screen Shot 2021-09-27 at 6 53 35 PM](https://user-images.githubusercontent.com/82717484/135000642-c40a4822-1396-4df1-9c54-365bd901d6d3.png)
-
-
-![Screen Shot 2021-09-27 at 6 54 23 PM](https://user-images.githubusercontent.com/82717484/135000652-b85c52b0-cc09-441a-8577-2ac43c57db63.png)
-
-
 ## Built With
 
 Javascript
