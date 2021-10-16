@@ -8,7 +8,6 @@ function BeerRatingPage() {
     //Grab brewery the user selected on the previous page from redux store
     const breweryReducer = useSelector(store => store.breweryReducer);
     const user = useSelector(store => store.user);
-    const history = useHistory();
 
     //State for user inputs of beer, rating, type, and notes
     const [beerInput, setBeerInput] = useState('');
@@ -16,12 +15,13 @@ function BeerRatingPage() {
     const [typeInput, setTypeInput] = useState('');
     const [notesInput, setNotesInput] = useState('');
     
-    //Limit the form inputs so the user doesn't go over the VARCHAR in DB
+    //Limit the form inputs so the user doesn't go over Database storage
     const notesLimit = notesInput.length - 500;
     const beerLimit = beerInput.length - 80;
     const typeLimit = notesInput.length - 25;
 
     const dispatch = useDispatch();
+    const history = useHistory();
 
     useEffect(()=>{
         dispatch({

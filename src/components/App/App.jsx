@@ -22,7 +22,7 @@ import RegisterPage from '../RegisterPage/RegisterPage';
 import './App.css';
 
 import RatingsPage from '../RatingsTable/RatingsTable';
-import BeerListPage from '../BeerListPage/BeerListPage';
+import BreweryList from '../BreweryListPage/BreweryListPage';
 import BeerRatingPage from '../BeerRatingPage/BeerRatingPage';
 
 
@@ -68,7 +68,7 @@ function App() {
             exact
             path="/beer-list"
           >
-            <BeerListPage />
+            <BreweryList />
           </ProtectedRoute>
 
           <ProtectedRoute

@@ -34,9 +34,9 @@ function UserPage() {
   const silverTier = 50;
   const goldTier = 100;
   const platinumTier = 101;
-  const bronzeProgress = (ratings.length  / bronzeTier) * 100;
+  const bronzeProgress = (ratings.length / bronzeTier) * 100;
   const silverProgress = (ratings.length / silverTier) * 100;
-  const goldProgress = (ratings.length  / goldTier) * 100;
+  const goldProgress = (ratings.length / goldTier) * 100;
   const platinumProgress = 100;
   const beerCount = ratings.length
   const breweriesVisited = breweries.length
@@ -60,7 +60,7 @@ function UserPage() {
     },
     bronzeProgressDone: {
       height: 25,
-      backgroundColor: '#388e3c',
+      backgroundColor: '#6C7A86',
       border: 0,
       borderRadius: 10,
     },
@@ -85,7 +85,7 @@ function UserPage() {
     },
     goldProgressDone: {
       height: 25,
-      backgroundColor: '#388e3c',
+      backgroundColor: '#a7b0c0',
     },
     goldProgress: {
       height: 25,
@@ -93,7 +93,7 @@ function UserPage() {
     },
     platinumProgressDone: {
       height: 25,
-      backgroundColor: '#388e3c',
+      backgroundColor: 'black',
 
     },
     platinumProgress: {
@@ -109,7 +109,7 @@ function UserPage() {
       id: user.id
     }
     dispatch({
-      type: 'EDIT',
+      type: 'EDIT_USERNAME',
       payload: payload
     })
   }
@@ -133,14 +133,14 @@ function UserPage() {
   }
 
   const nextTier = () => {
-    if (beerCount < bronzeTier){
+    if (beerCount < bronzeTier) {
       console.log(bronzeTier - beerCount)
       return (
         <div>
-        <div className={classes.bronzeProgress}>
-          <div className={classes.bronzeProgressDone} style={{ width: `${bronzeProgress}%` }}></div>
-          <center><h4>Rate {bronzeTier - beerCount} more beers to reach the next Silver Tier</h4></center>
-        </div>
+          <div className={classes.bronzeProgress}>
+            <div className={classes.bronzeProgressDone} style={{ width: `${bronzeProgress}%` }}></div>
+            <center><h4>Rate {bronzeTier - beerCount} more beers to reach the next Silver Tier</h4></center>
+          </div>
         </div>
       )
 
@@ -172,7 +172,7 @@ function UserPage() {
       )
     }
   }
-  
+
 
   const toggleButtonClick = () => {
     setButtonClick(!buttonClick);
@@ -184,13 +184,13 @@ function UserPage() {
     else {
       return (
         <div>
-          <input 
+          <input
             type="text"
             placeholder="edit username"
             value={editUsername}
             onChange={e => setEditUsername(e.target.value)}
 
-          /> 
+          />
           <button onClick={() => handleEdit()}>Submit Changes</button>
         </div>
       )
@@ -209,9 +209,9 @@ function UserPage() {
         <Table className={classes.table}>
           <TableRow>
             <TableCell>Username</TableCell>
-            <TableCell>{user.username}</TableCell>       
+            <TableCell>{user.username}</TableCell>
           </TableRow>
-          
+
           <TableRow>
             <TableCell>Breweries Visited:</TableCell>
             <TableCell>{breweriesVisited}</TableCell>
@@ -245,7 +245,7 @@ function UserPage() {
       <br />
       <br /><br />
       <br /><br />
-      
+
     </div>
   );
 }
