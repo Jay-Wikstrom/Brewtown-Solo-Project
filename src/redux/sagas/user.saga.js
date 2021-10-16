@@ -35,11 +35,11 @@ function* editItem(action) {
   } catch (error) {
     console.log(error)
   }
-}; 
+};
 
 function* userSaga() {
   yield takeLatest('FETCH_USER', fetchUser);
-  yield takeLatest('EDIT', editItem)
+  yield takeLatest('EDIT_USERNAME', editItem)
 }
 
 export default userSaga;
