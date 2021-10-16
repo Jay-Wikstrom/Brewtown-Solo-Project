@@ -4,7 +4,7 @@ import axios from 'axios';
 import { Button, makeStyles, Paper } from '@material-ui/core';
 import { useDispatch } from 'react-redux';
 
-function BeerListPage({ prop }) {
+function BreweryList({ prop }) {
     const history = useHistory();
     const dispatch = useDispatch();
 
@@ -169,4 +169,4 @@ function BeerListPage({ prop }) {
     )
 }
 
-export default BeerListPage;
+export default BreweryList;
